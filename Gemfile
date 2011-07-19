@@ -7,6 +7,7 @@ gem 'unicorn'
 gem 'ruby-debug19', :require => 'ruby-debug'
 gem 'newrelic_rpm'
 gem 'sass'
+gem 'omniauth'
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
