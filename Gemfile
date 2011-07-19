@@ -9,6 +9,8 @@ gem 'ruby-debug19', :require => 'ruby-debug'
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
-# group :development, :test do
-#   gem 'webrat'
-# end
+group :development, :test do
+  gem 'factory_girl'
+  gem 'rspec-rails'
+  gem 'autotest'
+end
