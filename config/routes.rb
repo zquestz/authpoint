@@ -1,4 +1,8 @@
 Googlepoint::Application.routes.draw do
+  get "auth/google/callback", :to => "oauth_callbacks#google"
+  get "auth/twitter/callback", :to => "oauth_callbacks#twitter"
+  get "auth/facebook/callback", :to => "oauth_callbacks#facebook"
+
   root :to => "main#index"
 
   # The priority is based upon order of creation:

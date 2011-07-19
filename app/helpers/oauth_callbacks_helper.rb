@@ -1,0 +1,2 @@
+module OauthCallbacksHelper
+end
