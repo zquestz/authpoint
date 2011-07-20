@@ -1,0 +1,7 @@
+<div id="header">
+  <div class="left"><h2><%= t(:app) %></h2></div>
+  <div class="right">
+    <%= logged_in? ? (current_user.uid + ' - ' + (link_to t(:logout), '/logout')).html_safe : (link_to t(:login_with_google), '/auth/google') -%>
+  </div>
+  <div class="reset"></div>
+</div>

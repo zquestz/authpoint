@@ -8,8 +8,11 @@
     <%= csrf_meta_tag %>
   </head>
   <body>
+    <%= render :partial => 'layouts/header' %>
     <%= render_flash_messages %>
+    <div id="content">
     <%= yield %>
+    </div>
     <%= javascript_include_tag :defaults %>
     <%= yield :javascripts %>
   </body>

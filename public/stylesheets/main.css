@@ -1,0 +1,28 @@
+body {
+  padding: 0;
+  margin: 0; }
+  body #header {
+    padding: 12px;
+    font-weight: bold;
+    border-bottom: 1px solid black; }
+    body #header .right {
+      float: right; }
+    body #header .left {
+      float: left; }
+    body #header a, body #header a:link, body #header a:visited {
+      text-decoration: none; }
+  body #content {
+    padding: 12px; }
+
+.reset {
+  clear: both; }
+
+.error, .notice {
+  padding: 12px;
+  color: white; }
+
+.error {
+  background-color: red; }
+
+.notice {
+  background-color: green; }

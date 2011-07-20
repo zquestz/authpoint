@@ -3,7 +3,7 @@ module ApplicationHelper
   def render_flash_messages
     output = ''
     flash.each do |key,value|
-      output = ([:notice, :error].include?(key) ? content_tag(:div, value, :class => key.to_s) : nil)
+      output = ([:notice, :error].include?(key) ? content_tag(:div, value, :class => (key.to_s + ' rollup')) : nil)
     end
     return output
   end

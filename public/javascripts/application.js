@@ -1,2 +1,6 @@
-// Place your application-specific JavaScript functions and classes here
-// This file is automatically included by javascript_include_tag :defaults
+// Rollup the errors and notices after a couple seconds.
+$(document).ready(function() {
+  if ($('.rollup')) {
+    $('.rollup').delay(2000).slideUp(500);
+  }
+});

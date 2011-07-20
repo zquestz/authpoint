@@ -17,6 +17,7 @@ class OauthCallbacksController < ApplicationController
   # Logout, seems like an ok place to put this for now.
   def logout
     reset_session
+    flash[:notice] = t(:logged_out, :scope => [:flash])
     redirect_back_or_default(root_path)
   end
 
