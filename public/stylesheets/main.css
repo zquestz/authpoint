@@ -1,16 +1,24 @@
+* {
+  font-family: Verdana, Helvetica, Arial, sans-serif; }
+
 body {
   padding: 0;
-  margin: 0; }
+  margin: 0;
+  background-color: white; }
   body #header {
     padding: 12px;
-    font-weight: bold;
-    border-bottom: 1px solid black; }
+    background-color: #d0d9d6;
+    color: white;
+    border-bottom: 1px solid #9ca6a2; }
+    body #header a, body #header a:link, body #header a:visited {
+      text-decoration: none;
+      color: #212625; }
+    body #header a:active, body #header a:hover {
+      color: #bf0404; }
     body #header .right {
       float: right; }
     body #header .left {
       float: left; }
-    body #header a, body #header a:link, body #header a:visited {
-      text-decoration: none; }
   body #content {
     padding: 12px; }
 
@@ -19,10 +27,5 @@ body {
 
 .error, .notice {
   padding: 12px;
-  color: white; }
-
-.error {
-  background-color: red; }
-
-.notice {
-  background-color: green; }
+  color: white;
+  background-color: #bf0404; }
