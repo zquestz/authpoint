@@ -5,21 +5,14 @@ describe OauthCallbacksController do
   describe "GET 'google'" do
     it "should be successful" do
       get 'google'
-      response.should be_success
+      response.should be_redirect
     end
   end
-
-  describe "GET 'twitter'" do
+  
+  describe "GET 'failure'" do
     it "should be successful" do
-      get 'twitter'
-      response.should be_success
-    end
-  end
-
-  describe "GET 'facebook'" do
-    it "should be successful" do
-      get 'facebook'
-      response.should be_success
+      get 'failure'
+      response.should be_redirect
     end
   end
 
