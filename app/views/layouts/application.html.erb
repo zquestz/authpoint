@@ -11,9 +11,9 @@
     <%= render :partial => 'layouts/header' %>
     <%= render_flash_messages %>
     <div id="content">
-    <%= yield %>
+      <%= yield %>
     </div>
-    <%= javascript_include_tag :defaults %>
+    <%= javascript_include_tag :defaults, :cache => 'app' %>
     <%= yield :javascripts %>
   </body>
 </html>
