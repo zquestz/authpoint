@@ -1,7 +1,7 @@
 - googlepoint -
 http://github.com/zquestz/googlepoint
 
-Simple shell for rails 3 using omniauth, mainly designed for working with Google.
+Simple shell for rails 3 using omniauth.
 
 This app uses bundler, and rvm is recommended. By default it uses the 1.9.2@googlepoint gemset.
 
