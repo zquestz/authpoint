@@ -6,8 +6,7 @@ describe ApplicationController do
     describe "logged in" do
       before do
         @user = Factory(:user)
-        subject.session[:provider] = @user.provider
-        subject.session[:uid] = @user.uid
+        subject.setup_session(@user.provider, @user.uid)
       end
 
       it "should have current_user" do
