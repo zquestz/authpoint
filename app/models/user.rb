@@ -1,14 +1,14 @@
 class User < ActiveRecord::Base
   validates_presence_of :provider, :uid
-  
+
   # List only google accounts
   scope :google, :conditions => ['provider = ?', 'google']
-  
+
   # Slug the url.
   def to_param
     "#{id}-#{name.parameterize}"
   end
-  
+
   # Initialize User based on returned oauth data
   # More details at https://github.com/intridea/omniauth/wiki/Auth-Hash-Schema
   def self.initialize_user_with_oauth_data(data)
@@ -16,10 +16,10 @@ class User < ActiveRecord::Base
     attrs = data['user_info'] || {}
     attrs.merge!(data['credentials']) if data['credentials']
     attrs.merge!(data['extra']) if data['extra']
-    attrs.delete_if {|k, v| !user.attributes.keys.include?(k)}
+    attrs.delete_if { |k, v| !user.attributes.keys.include?(k) }
     user.update_attributes(attrs) ? user : false
   end
-  
+
   # Count google accounts
   def self.google_count
     User.count(:conditions => ['provider = ?', 'google'])
