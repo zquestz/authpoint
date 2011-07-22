@@ -37,9 +37,4 @@ class OauthCallbacksController < ApplicationController
       redirect_back_or_default(root_path)
     end
   end
-  
-  # Setup the session if we have a valid user.
-  def setup_session(provider, uid)
-    session[:provider], session[:uid] = [provider, uid]
-  end
 end

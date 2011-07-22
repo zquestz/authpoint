@@ -45,4 +45,9 @@ class ApplicationController < ActionController::Base
   def strip_slug(param)
     param.split('-').first
   end
+
+  # Setup the session if we have a valid user.
+  def setup_session(provider, uid)
+    session[:provider], session[:uid] = [provider, uid]
+  end
 end

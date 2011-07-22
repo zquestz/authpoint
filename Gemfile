@@ -17,4 +17,5 @@ group :development, :test do
   gem "factory_girl_rails", "~> 1.1.rc1"
   gem 'rspec-rails'
   gem 'autotest'
+  gem 'simplecov', '>= 0.4.0', :require => false
 end
