@@ -4,6 +4,5 @@ log/*.log
 tmp/
 config/database.yml
 config/newrelic.yml
-.idea/**/*
-.idea/**/*
+.idea/
 coverage/
