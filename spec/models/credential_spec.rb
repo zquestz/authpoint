@@ -7,6 +7,12 @@ describe Credential do
       cred.should be_invalid
     end
 
+    it "should not save if there is no user" do
+      cred = Credential.new(:provider => 'google', :uid => 'minimal@gmail.com')
+      cred.should_not be_valid
+      cred.save.should be_false
+    end
+
     it "should save if we pass a valid user, provider, and uid" do
       user = Factory(:user)
       cred = Credential.new(:user =>user, :provider => 'google', :uid => 'minimal@gmail.com')
