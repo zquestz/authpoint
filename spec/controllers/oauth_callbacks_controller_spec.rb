@@ -46,8 +46,7 @@ describe OauthCallbacksController do
     it "should redirect and have logged out notice" do
       get 'logout'
       flash[:notice].should match(I18n.translate(:logged_out, :scope => [:flash]))
-      session[:uid].should be_blank
-      session[:provider].should be_blank
+      session[:user_id].should be_blank
     end
   end
 

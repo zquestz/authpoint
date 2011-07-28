@@ -10,9 +10,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110720054428) do
+ActiveRecord::Schema.define(:version => 20110728030832) do
 
-  create_table "users", :force => true do |t|
+  create_table "credentials", :force => true do |t|
+    t.integer  "user_id"
     t.string   "provider"
     t.string   "uid"
     t.string   "name"
@@ -32,6 +33,14 @@ ActiveRecord::Schema.define(:version => 20110720054428) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["provider", "uid"], :name => "index_users_on_provider_and_uid"
+  add_index "credentials", ["provider", "uid"], :name => "index_credentials_on_provider_and_uid"
+
+  create_table "users", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["name"], :name => "index_users_on_name"
 
 end

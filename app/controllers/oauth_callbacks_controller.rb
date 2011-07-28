@@ -26,8 +26,8 @@ class OauthCallbacksController < ApplicationController
   # Get data from omniauth and create a user account.
   def init_user
     if auth_data = request.env['omniauth.auth']
-      if user = User.initialize_user_with_oauth_data(auth_data)
-        setup_session(user.provider, user.uid)
+      if user = User.initialize_with_oauth_data(auth_data, current_user)
+        setup_session(user.id)
       else
         flash[:error] = t(:create_user_error, :scope => [:flash])
         redirect_back_or_default(root_path)

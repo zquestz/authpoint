@@ -72,25 +72,4 @@ describe User do
       User.count.should == 1
     end
   end
-
-  describe "counts" do
-    it "should have the number of google users" do
-      Factory(:user)
-      User.google_count.should == 1
-      Factory(:user)
-      User.google_count.should == 2
-      User.last.delete
-      User.google_count.should == 1
-    end
-  end
-
-  describe "scopes" do
-    it "should allow you to scope only google users" do
-      Factory(:user)
-      Factory(:user, :provider => 'twitter', :uid => 'fake')
-      google_users = User.google.all
-      google_users.count.should == 1
-      google_users.first.provider.should == 'google'
-    end
-  end
 end
