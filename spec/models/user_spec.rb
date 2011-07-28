@@ -71,8 +71,8 @@ describe User do
         User.count.should == 0
         Credential.count.should == 0
         user = User.initialize_with_oauth_data({
-          'provider' => 'google',
-          'uid' => 'someone@gmail.com'
+          'provider' => @auth_data['provider'],
+          'uid' => @auth_data['uid']
         }, current_user)
         User.count.should == 1
         Credential.count.should == 1
@@ -105,8 +105,8 @@ describe User do
         User.count.should == 1
         Credential.count.should == 0
         user = User.initialize_with_oauth_data({
-          'provider' => 'google',
-          'uid' => 'someone@gmail.com'
+          'provider' => @auth_data['provider'],
+          'uid' => @auth_data['uid']
         }, current_user)
         User.count.should == 1
         Credential.count.should == 1
@@ -149,8 +149,8 @@ describe User do
         User.count.should == 1
         Credential.count.should == 1
         user = User.initialize_with_oauth_data({
-          'provider' => 'google',
-          'uid' => 'someone@gmail.com'
+          'provider' => @auth_data['provider'],
+          'uid' => @auth_data['uid']
         }, current_user)
         User.count.should == 1
         Credential.count.should == 1
@@ -193,8 +193,8 @@ describe User do
         User.count.should == 1
         Credential.count.should == 1
         user = User.initialize_with_oauth_data({
-          'provider' => 'google',
-          'uid' => 'someone@gmail.com'
+          'provider' => @auth_data['provider'],
+          'uid' => @auth_data['uid']
         }, current_user)
         User.count.should == 1
         Credential.count.should == 2
