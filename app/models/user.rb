@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  validates_presence_of :name, :credentials
+  validates_presence_of :name
 
   # Can have many oauth credentials
   has_many :credentials

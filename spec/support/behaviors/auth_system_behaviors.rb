@@ -2,7 +2,7 @@ shared_examples_for "an auth system" do
   describe "logged in" do
     before do
       @user = Factory(:user)
-      subject.setup_session(@user.provider, @user.uid)
+      subject.setup_session(@user.id)
     end
 
     it "should have current_user" do

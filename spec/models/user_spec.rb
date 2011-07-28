@@ -7,8 +7,8 @@ describe User do
       user.should be_invalid
     end
 
-    it "should save if we pass a provider and uid" do
-      user = User.new(:provider => 'google', :uid => 'minimal@gmail.com')
+    it "should save if we pass a name" do
+      user = User.new(:name => 'name')
       user.should be_valid
       user.save.should be_true
     end
@@ -48,28 +48,60 @@ describe User do
       }
     end
 
-    it "should import auth data and return a user" do
-      User.count.should == 0
-      user = User.initialize_user_with_oauth_data(@auth_data)
-      user.should be_valid
-      User.count.should == 1
+    context "logged out" do
+      let(:current_user) { nil }
+
+      it "should import auth data and return a user" do
+        User.count.should == 0
+        Credential.count.should == 0
+        user = User.initialize_with_oauth_data(@auth_data, current_user)
+        User.count.should == 1
+        Credential.count.should == 1
+      end
+
+      it "should import auth data and ignore extra data" do
+        User.count.should == 0
+        Credential.count.should == 0
+        user = User.initialize_with_oauth_data(@auth_data.merge('extra_data' => 'extra'), current_user)
+        User.count.should == 1
+        Credential.count.should == 1
+      end
+
+      it "should handle only receiving the provider and uid" do
+        User.count.should == 0
+        user = User.initialize_with_oauth_data({
+          'provider' => 'google',
+          'uid' => 'someone@gmail.com'
+        }, current_user)
+        User.count.should == 1
+        Credential.count.should == 1
+      end
     end
 
-    it "should import auth data and ignore extra data" do
-      User.count.should == 0
-      user = User.initialize_user_with_oauth_data(@auth_data.merge('extra_data' => 'extra'))
-      user.should be_valid
-      User.count.should == 1
-    end
+    context "logged in" do
+      it "should import auth data and return a user" do
+        current_user = Factory(:user)
+        User.count.should == 1
+        user = User.initialize_with_oauth_data(@auth_data, current_user)
+        User.count.should == 1
+      end
 
-    it "should handle only receiving the provider and uid" do
-      User.count.should == 0
-      user = User.initialize_user_with_oauth_data({
-        'provider' => 'google',
-        'uid' => 'someone@gmail.com'
-      })
-      user.should be_valid
-      User.count.should == 1
+      it "should import auth data and ignore extra data" do
+        current_user = Factory(:user)
+        User.count.should == 1
+        user = User.initialize_with_oauth_data(@auth_data.merge('extra_data' => 'extra'), current_user)
+        User.count.should == 1
+      end
+
+      it "should handle only receiving the provider and uid" do
+        current_user = Factory(:user)
+        User.count.should == 1
+        user = User.initialize_with_oauth_data({
+          'provider' => 'google',
+          'uid' => 'someone@gmail.com'
+        }, current_user)
+        User.count.should == 1
+      end
     end
   end
 end
