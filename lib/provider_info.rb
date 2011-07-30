@@ -10,7 +10,7 @@ class ProviderInfo
     default_settings = config['default'] || {}
     env_settings = config[Rails.env] || {}
     default_settings.recursive_merge(env_settings)
-  rescue Errno::ENOENT => e
+  rescue => e
     puts "#{e.message}" unless Rails.env.test?
     exit
   end
