@@ -38,5 +38,9 @@ module Googlepoint
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+
+    # Include extensions to ruby classes
+    # Right now this is limited to Hashes.
+    require 'extend_ruby_classes'
   end
 end

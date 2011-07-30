@@ -6,3 +6,4 @@ config/database.yml
 config/newrelic.yml
 .idea/
 coverage/
+config/providers.yml

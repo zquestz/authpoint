@@ -1,0 +1,14 @@
+---
+  # Default provider settings
+  default:
+    google:
+      key: KEY
+      secret: SECRET
+  # Development settings
+  development:
+  # Staging settings
+  staging:
+  # Production settings
+  production:
+  # Test settings
+  test:
