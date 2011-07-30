@@ -16,7 +16,9 @@ describe ProviderInfo do
       end
 
       it "should raise an error" do
-        lambda { @provider_info.settings }.should raise_error
+        lambda {
+          @provider_info.settings
+        }.should raise_error
       end
     end
   end
