@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Hash do
-  it "should have recursive merge" do
+  it 'should have recursive merge' do
     {
       :val => {
         :first => 1,

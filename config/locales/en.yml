@@ -9,4 +9,4 @@ en:
     auth_failed: 'Authentication failed.'
     create_user_error: 'Sorry, there was an error creating your user account.'
     no_auth_data: "Sorry, we didn't recieve any authentication data."
-    logged_out: "You have been logged out."
+    logged_out: 'You have been logged out.'

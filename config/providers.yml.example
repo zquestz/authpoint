@@ -6,12 +6,12 @@
       secret: SECRET
       scope: http://www.google.com/base/feeds
     facebook:
-      key:
-      secret:
+      key: KEY
+      secret: SECRET
       scope:
     twitter:
-      key:
-      secret:
+      key: KEY
+      secret: SECRET
       scope:
   # Development settings
   development:
