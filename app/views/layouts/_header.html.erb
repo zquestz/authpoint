@@ -1,6 +1,6 @@
 <div id="header">
   <div class="left">
-    <b><%= t(:app) %></b>
+    <b><%= link_to t(:app), root_path %></b>
   </div>
   <div class="right">
     <%= (current_user.name + ' - ' + (link_to t(:logout), logout_path)).html_safe if logged_in? -%>
