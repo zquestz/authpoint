@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
   
   protected
   
+  # Show template with links to supported oauth providers.
+  # Once they login they will be forwarded to their requested resource.
   def require_login
     render :template => 'shared/login' unless logged_in?
   end
