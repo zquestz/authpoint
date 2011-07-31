@@ -4,7 +4,7 @@ module AuthSystem
     klass.helper_method(:current_user, :current_user_id, :logged_in?) if klass.methods.include?(:helper_method)
 
     # Store url to any pages we render correctly
-    klass.after_filter(:store_location, :if => Proc.new { |c| c.request.format.html? }) if klass.methods.include?(:after_filter)
+    klass.before_filter(:store_location, :if => Proc.new { |c| c.request.format.html? }) if klass.methods.include?(:before_filter)
   end
 
   # Get current user
