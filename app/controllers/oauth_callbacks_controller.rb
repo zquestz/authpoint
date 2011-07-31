@@ -1,7 +1,6 @@
 class OauthCallbacksController < ApplicationController
-  skip_before_filter :require_login
+  skip_before_filter :require_login, :store_location
   before_filter :init_user, :except => [:failure, :logout]
-  skip_before_filter :store_location
 
   # Auth with google
   def google
