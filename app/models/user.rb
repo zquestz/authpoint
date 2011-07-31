@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   validates_presence_of :name
 
   # Can have many oauth credentials
-  has_many :credentials
+  has_many :credentials, :dependent => :destroy
 
   # Slug the url.
   def to_param
