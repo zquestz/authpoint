@@ -77,6 +77,17 @@ describe User do
         User.count.should == 1
         Credential.count.should == 1
       end
+      
+      it "should set the user name to the uid if no nickname is present" do
+        user = User.initialize_with_oauth_data(@auth_data, current_user)
+        user.name.should == @auth_data['uid']
+      end
+      
+      it "should set the user name to the nickname if it is present" do
+        @auth_data['user_info']['nickname'] = 'test'
+        user = User.initialize_with_oauth_data(@auth_data, current_user)
+        user.name.should == @auth_data['user_info']['nickname']
+      end
     end
 
     context "existing user with no credentials" do

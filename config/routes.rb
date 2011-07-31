@@ -3,6 +3,9 @@ Authpoint::Application.routes.draw do
   # Homepage
   root :to => "main#index"
   
+  # Privacy Policy
+  get "privacy", :to => "main#privacy", :as => :privacy
+  
   # Omniauth routes
   get "auth/google/callback", :to => "oauth_callbacks#google"
   get "auth/facebook/callback", :to => "oauth_callbacks#facebook"

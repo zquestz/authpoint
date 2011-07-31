@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
     attrs.merge!(data['extra']) if data['extra']
     attrs.delete_if { |k, v| !credential.attributes.keys.include?(k) }
     credential.attributes = attrs
-    user = current_user || credential.user || User.new(:name => credential.uid)
+    user = current_user || credential.user || User.new(:name => (credential.nickname.presence || credential.uid))
     credential.user = user
     user.credentials << credential
     user.save ? user : false

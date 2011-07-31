@@ -3,7 +3,7 @@
     <h2><%= t(:app) %></h2>
   </div>
   <div class="right">
-    <%= logged_in? ? (current_user.name + ' - ' + (link_to t(:logout), logout_path)).html_safe : (link_to t(:login_with_google), '/auth/google') -%>
+    <%= (current_user.name + ' - ' + (link_to t(:logout), logout_path)).html_safe if logged_in? -%>
   </div>
   <div class="reset"></div>
 </div>

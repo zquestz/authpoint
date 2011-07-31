@@ -1,4 +1,5 @@
 class OauthCallbacksController < ApplicationController
+  skip_before_filter :require_login
   before_filter :init_user, :except => [:failure, :logout]
   skip_after_filter :store_location
 
