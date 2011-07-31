@@ -9,6 +9,10 @@
       key:
       secret:
       scope:
+    twitter:
+      key:
+      secret:
+      scope:
   # Development settings
   development:
   # Staging settings

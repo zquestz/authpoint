@@ -66,6 +66,38 @@ describe OauthCallbacksController do
     end
   end
   
+  describe "GET 'twitter' with request env" do
+    before do
+      request.env['omniauth.auth'] = {'provider' => 'twitter', 'uid' => '11111111'}
+    end
+
+    it "should redirect and have auth success notice" do
+      get 'twitter'
+      response.should be_redirect
+      flash[:notice].should match(I18n.translate(:auth_success, :scope => [:flash]))
+    end
+  end
+
+  describe "GET 'twitter' without request env" do
+    it "should redirect and have no auth data error" do
+      get 'twitter'
+      response.should be_redirect
+      flash[:error].should match(I18n.translate(:no_auth_data, :scope => [:flash]))
+    end
+  end
+
+  describe "GET 'twitter' with bad request env" do
+    before do
+      request.env['omniauth.auth'] = {'provider' => 'twitter'}
+    end
+
+    it "should redirect and have create user error" do
+      get 'twitter'
+      response.should be_redirect
+      flash[:error].should match(I18n.translate(:create_user_error, :scope => [:flash]))
+    end
+  end
+  
   describe "GET 'failure'" do
     it "should redirect and have auth failed error" do
       get 'failure'

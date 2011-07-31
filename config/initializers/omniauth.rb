@@ -13,4 +13,8 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   provider :facebook, pinfo['facebook']['key'], pinfo['facebook']['secret'], {
     :scope => pinfo['facebook']['scope']
   }
+  
+  provider :twitter, pinfo['twitter']['key'], pinfo['twitter']['secret'], {
+    :scope => pinfo['twitter']['scope']
+  }
 end

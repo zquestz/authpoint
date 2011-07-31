@@ -13,6 +13,12 @@ class OauthCallbacksController < ApplicationController
     flash[:notice] = t(:auth_success, :scope => [:flash])
     redirect_back_or_default(root_path)
   end
+  
+  # Auth with twitter
+  def twitter
+    flash[:notice] = t(:auth_success, :scope => [:flash])
+    redirect_back_or_default(root_path)
+  end
 
   # Failure route
   def failure
