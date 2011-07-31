@@ -34,6 +34,38 @@ describe OauthCallbacksController do
     end
   end
   
+  describe "GET 'facebook' with request env" do
+    before do
+      request.env['omniauth.auth'] = {'provider' => 'facebook', 'uid' => '111111111'}
+    end
+
+    it "should redirect and have auth success notice" do
+      get 'facebook'
+      response.should be_redirect
+      flash[:notice].should match(I18n.translate(:auth_success, :scope => [:flash]))
+    end
+  end
+
+  describe "GET 'facebook' without request env" do
+    it "should redirect and have no auth data error" do
+      get 'facebook'
+      response.should be_redirect
+      flash[:error].should match(I18n.translate(:no_auth_data, :scope => [:flash]))
+    end
+  end
+
+  describe "GET 'facebook' with bad request env" do
+    before do
+      request.env['omniauth.auth'] = {'provider' => 'facebook'}
+    end
+
+    it "should redirect and have create user error" do
+      get 'facebook'
+      response.should be_redirect
+      flash[:error].should match(I18n.translate(:create_user_error, :scope => [:flash]))
+    end
+  end
+  
   describe "GET 'failure'" do
     it "should redirect and have auth failed error" do
       get 'failure'

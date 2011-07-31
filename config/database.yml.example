@@ -9,7 +9,7 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: googlepoint_development
+  database: authpoint_development
   pool: 5
   username: root
   password: root
@@ -22,7 +22,7 @@ test:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: googlepoint_test
+  database: authpoint_test
   pool: 5
   username: root
   password: root
@@ -32,7 +32,7 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: googlepoint_production
+  database: authpoint_production
   pool: 5
   username: root
   password:

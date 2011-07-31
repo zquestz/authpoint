@@ -4,6 +4,11 @@
     google:
       key: KEY
       secret: SECRET
+      scope: http://www.google.com/base/feeds
+    facebook:
+      key:
+      secret:
+      scope:
   # Development settings
   development:
   # Staging settings

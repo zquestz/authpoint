@@ -1,12 +1,13 @@
-Googlepoint::Application.routes.draw do
+Authpoint::Application.routes.draw do
   
   # Homepage
   root :to => "main#index"
   
   # Omniauth routes
   get "auth/google/callback", :to => "oauth_callbacks#google"
+  get "auth/facebook/callback", :to => "oauth_callbacks#facebook"
   get "auth/failure", :to => "oauth_callbacks#failure"
-  get "logout", :to => "oauth_callbacks#logout"
+  get "logout", :to => "oauth_callbacks#logout", :as => :logout
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

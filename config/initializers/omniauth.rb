@@ -7,6 +7,10 @@ pinfo = ProviderInfo.new.settings
 
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :google, pinfo['google']['key'], pinfo['google']['secret'], {
-    :scope => 'http://www.google.com/base/feeds'
+    :scope => pinfo['google']['scope']
+  }
+  
+  provider :facebook, pinfo['facebook']['key'], pinfo['facebook']['secret'], {
+    :scope => pinfo['facebook']['scope']
   }
 end

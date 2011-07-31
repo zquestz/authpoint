@@ -4,4 +4,4 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
-Googlepoint::Application.load_tasks
+Authpoint::Application.load_tasks
