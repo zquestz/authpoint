@@ -17,4 +17,18 @@ module ApplicationHelper
   def display_email(email, options = {})
     return link_to(email, 'mailto:' + email, options)
   end
+  
+  # Display user info for header
+  def login_info
+    (link_to(current_user.name, user_path(current_user)) + ' - ') if current_user
+  end
+  
+  def connected_networks
+    providers = current_user.credentials.map(&:provider)
+    output = '<div id="networks">'
+    output += image_tag('providers/tiny/google.png') if providers.include?('google')
+    output += image_tag('providers/tiny/facebook.png') if providers.include?('facebook')
+    output += image_tag('providers/tiny/twitter.png') if providers.include?('twitter')
+    output += '</div>'
+  end
 end

@@ -26,6 +26,11 @@ body {
     body #content input {
       margin: 3px;
       padding: 4px; }
+    body #content #networks {
+      padding: 5px 5px 0 0; }
+      body #content #networks img {
+        padding-right: 4px;
+        vertical-align: middle; }
   body #message .error, body #message .notice {
     padding: 8px 12px;
     font-size: 11px;

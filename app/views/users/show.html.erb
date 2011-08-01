@@ -1,11 +1,13 @@
-<%= link_to 'Edit Account', edit_user_path(@user) %>
+<%= link_to t(:edit, :scope => [:users]), edit_user_path(@user) %> | <%= link_to t(:delete, :scope => [:users]), user_path(@user), :confirm => 'Are you sure?', :method => :delete %>
 <p>
-  <b>Name:</b>
+  <b><%= t(:name, :scope => [:formtastic, :labels, :user]) %> -</b>
   <%= @user.name %>
 </p>
+<b><%= t(:connected_networks) %></b>
+<%= connected_networks.html_safe %>
 <p>
-  <b>Link Another Network:</b><br />
-  <%= link_to(image_tag('providers/google.png'), '/auth/google') %>
-  <%= link_to(image_tag('providers/facebook.png'), '/auth/facebook') %>
-  <%= link_to(image_tag('providers/twitter.png'), '/auth/twitter') %>
+  <b><%= t(:link_network) -%></b><br />
+  <%= link_to(image_tag('providers/medium/google.png'), '/auth/google') %>
+  <%= link_to(image_tag('providers/medium/facebook.png'), '/auth/facebook') %>
+  <%= link_to(image_tag('providers/medium/twitter.png'), '/auth/twitter') %>
 </p>

@@ -4,6 +4,7 @@
 en:
   app: 'authpoint'
   logout: 'Logout'
+  link_network: 'Link or Update Network'
   flash:
     auth_success: 'Authentication successful.'
     auth_failed: 'Authentication failed.'
@@ -23,3 +24,6 @@ en:
       update: "Update %{model}"
       user:
         update: "Update Account"
+  users:
+    edit: 'Edit Account'
+    delete: 'Delete Account'
