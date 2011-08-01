@@ -5,6 +5,7 @@ en:
   app: 'authpoint'
   logout: 'Logout'
   link_network: 'Link or Update Network'
+  delete_confirmation: 'Are you sure?'
   flash:
     auth_success: 'Authentication successful.'
     auth_failed: 'Authentication failed.'

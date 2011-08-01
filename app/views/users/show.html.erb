@@ -1,4 +1,4 @@
-<%= link_to t(:edit, :scope => [:users]), edit_user_path(@user) %> | <%= link_to t(:delete, :scope => [:users]), user_path(@user), :confirm => 'Are you sure?', :method => :delete %>
+<%= link_to t(:edit, :scope => [:users]), edit_user_path(@user) %> | <%= link_to t(:delete, :scope => [:users]), user_path(@user), :confirm => t(:delete_confirmation), :method => :delete %>
 <p>
   <b><%= t(:name, :scope => [:formtastic, :labels, :user]) %> -</b>
   <%= @user.name %>
