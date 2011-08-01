@@ -6,6 +6,7 @@ en:
   logout: 'Logout'
   link_network: 'Link or Update Network'
   delete_confirmation: 'Are you sure?'
+  signup: 'Click on a provider below to signup.'
   flash:
     auth_success: 'Authentication successful.'
     auth_failed: 'Authentication failed.'
