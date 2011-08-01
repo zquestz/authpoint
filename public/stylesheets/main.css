@@ -12,8 +12,10 @@ body {
     border-bottom: 1px solid #9ca6a2; }
     body #header a, body #header a:link, body #header a:visited {
       text-decoration: none;
+      background-color: #d0d9d6;
       color: #212625; }
     body #header a:active, body #header a:hover {
+      background-color: #d0d9d6;
       color: #bf0404; }
     body #header .right {
       float: right; }
@@ -21,12 +23,11 @@ body {
       float: left; }
   body #content {
     padding: 12px; }
+  body #message .error, body #message .notice {
+    padding: 8px 12px;
+    font-size: 11px;
+    color: white;
+    background-color: #bf0404; }
 
 .reset {
   clear: both; }
-
-.error, .notice {
-  padding: 8px 12px;
-  font-size: 11px;
-  color: white;
-  background-color: #bf0404; }

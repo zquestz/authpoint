@@ -1,5 +1,7 @@
 Authpoint::Application.routes.draw do
-  
+  # For user management
+  resources :users, :only => [:show, :edit, :update, :destroy]
+
   # Homepage
   root :to => 'main#index'
   

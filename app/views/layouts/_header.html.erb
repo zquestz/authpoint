@@ -3,7 +3,7 @@
     <b><%= link_to t(:app), root_path %></b>
   </div>
   <div class="right">
-    <%= (current_user.name + ' - ' + (link_to t(:logout), logout_path)).html_safe if logged_in? -%>
+    <%= (link_to(current_user.name, user_path(current_user)) + ' - ' + (link_to t(:logout), logout_path)).html_safe if logged_in? -%>
   </div>
   <div class="reset"></div>
 </div>

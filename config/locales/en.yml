@@ -10,3 +10,16 @@ en:
     create_user_error: 'Sorry, there was an error creating your user account.'
     no_auth_data: "Sorry, we didn't recieve any authentication data."
     logged_out: 'You have been logged out.'
+    access_denied: 'Access denied.'
+    user_updated: 'Account was successfully updated.'    
+  formtastic:
+    labels:
+      user:
+        name: "Name"
+        edit:
+          name: "Name"
+    actions:
+      create: "Create %{model}"
+      update: "Update %{model}"
+      user:
+        update: "Update Account"

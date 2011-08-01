@@ -38,7 +38,9 @@ module AuthSystem
 
   # Redirect back to last good page, or the page you pass it if it doesn't know where to go.
   def redirect_back_or_default(default)
-    redirect_to(session[:return_to] || default)
+    location = session[:return_to] || default
+    location = default if location == request.fullpath
+    redirect_to(location)
     session[:return_to] = nil
     return
   end

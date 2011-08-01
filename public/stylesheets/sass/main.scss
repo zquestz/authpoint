@@ -15,10 +15,12 @@ body {
     
     a, a:link, a:visited {
       text-decoration: none;
+      background-color: #d0d9d6;
       color: #212625;
     }
     
     a:active, a:hover {
+      background-color: #d0d9d6;
       color: #bf0404;
     }
     
@@ -34,15 +36,17 @@ body {
   #content {
     padding: 12px;
   }
+  
+  #message {
+    .error, .notice {
+      padding: 8px 12px;
+      font-size: 11px;
+      color: white;
+      background-color: #bf0404;
+    }
+  }
 }
 
 .reset {
   clear: both;
-}
-
-.error, .notice {
-  padding: 8px 12px;
-  font-size: 11px;
-  color: white;
-  background-color: #bf0404;
 }
