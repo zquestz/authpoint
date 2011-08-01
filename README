@@ -5,4 +5,15 @@ Simple shell for rails 3 using omniauth.
 
 This app uses bundler, and rvm is recommended. By default it uses the 1.9.2@authpoint gemset.
 
-Much more coming soon. This is just the start.
+Setup is pretty easy.
+
+* Clone the repo
+* Run 'bundle install'
+* Edit 'config/database.yml'
+* Run 'rake db:create db:migrate db:test:prepare'
+* Setup 'config/providers.yml'
+* Run the specs and make sure everything passes with 'rake spec' 
+
+These docs are obviously very rough, more info will be coming soon.
+
+-quest
