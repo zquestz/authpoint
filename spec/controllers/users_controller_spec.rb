@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe UsersController do
+  render_views
+  
   before do
     @user = Factory(:user)
     @user2 = Factory(:user)

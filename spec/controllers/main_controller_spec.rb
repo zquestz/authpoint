@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe MainController do
+  render_views
 
   describe 'GET #index' do
     context 'logged in' do
