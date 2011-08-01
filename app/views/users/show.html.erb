@@ -3,3 +3,9 @@
   <b>Name:</b>
   <%= @user.name %>
 </p>
+<p>
+  <b>Link Another Network:</b><br />
+  <%= link_to(image_tag('providers/google.png'), '/auth/google') %>
+  <%= link_to(image_tag('providers/facebook.png'), '/auth/facebook') %>
+  <%= link_to(image_tag('providers/twitter.png'), '/auth/twitter') %>
+</p>
