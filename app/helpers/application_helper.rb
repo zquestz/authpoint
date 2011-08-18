@@ -23,13 +23,21 @@ module ApplicationHelper
     (link_to(current_user.name, user_path(current_user)) + ' - ') if current_user
   end
   
+  # Displays an icon for each network with an auth link
+  def connect_networks
+    output = link_to(image_tag('providers/32px/facebook.png'), '/auth/facebook')
+    output += link_to(image_tag('providers/32px/google.png'), '/auth/google')
+    output += link_to(image_tag('providers/32px/tumblr.png'), '/auth/tumblr') 
+    output += link_to(image_tag('providers/32px/twitter.png'), '/auth/twitter')
+  end
+  
   # Display connected network badges
   def connected_networks
     if current_user
-      output = '<div id="networks">'
+      output = '<div class="networks">'
       current_user.credentials.each do |credential|
         title = "#{credential.provider.capitalize} - #{credential.nickname.presence || credential.uid}"
-        output += image_tag("providers/tiny/#{credential.provider}.png", :title => title)
+        output += image_tag("providers/24px/#{credential.provider}.png", :title => title)
       end
       output += '</div>'
     end

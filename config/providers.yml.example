@@ -13,6 +13,10 @@
       key: KEY
       secret: SECRET
       scope:
+    tumblr:
+      key: KEY
+      secret: SECRET
+      scope:
   # Development settings
   development:
   # Staging settings

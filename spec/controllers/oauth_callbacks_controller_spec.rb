@@ -98,6 +98,38 @@ describe OauthCallbacksController do
     end
   end
   
+  describe 'GET #tumblr with request env' do
+    before do
+      request.env['omniauth.auth'] = {'provider' => 'tumblr', 'uid' => 'zquestz'}
+    end
+
+    it 'should redirect and have auth success notice' do
+      get 'tumblr'
+      response.should be_redirect
+      flash[:notice].should match(I18n.translate(:auth_success, :scope => [:flash]))
+    end
+  end
+
+  describe 'GET #tumblr without request env' do
+    it 'should redirect and have no auth data error' do
+      get 'tumblr'
+      response.should be_redirect
+      flash[:error].should match(I18n.translate(:no_auth_data, :scope => [:flash]))
+    end
+  end
+
+  describe 'GET #tumblr with bad request env' do
+    before do
+      request.env['omniauth.auth'] = {'provider' => 'tumblr'}
+    end
+
+    it 'should redirect and have create user error' do
+      get 'tumblr'
+      response.should be_redirect
+      flash[:error].should match(I18n.translate(:create_user_error, :scope => [:flash]))
+    end
+  end
+  
   describe 'GET #failure' do
     it 'should redirect and have auth failed error' do
       get 'failure'

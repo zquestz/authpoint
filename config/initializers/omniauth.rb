@@ -17,4 +17,8 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   provider :twitter, pinfo['twitter']['key'], pinfo['twitter']['secret'], {
     :scope => pinfo['twitter']['scope']
   }
+  
+  provider :tumblr, pinfo['tumblr']['key'], pinfo['tumblr']['secret'], {
+    :scope => pinfo['tumblr']['scope']
+  }
 end

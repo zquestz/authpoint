@@ -5,9 +5,8 @@
 </p>
 <b><%= t(:connected_networks) %></b>
 <%= connected_networks.html_safe %>
-<p>
-  <b><%= t(:link_network) -%></b><br />
-  <%= link_to(image_tag('providers/medium/google.png'), '/auth/google') %>
-  <%= link_to(image_tag('providers/medium/facebook.png'), '/auth/facebook') %>
-  <%= link_to(image_tag('providers/medium/twitter.png'), '/auth/twitter') %>
-</p>
+
+<b><%= t(:link_network) -%></b>
+<div class="networks">
+<%= connect_networks.html_safe %>
+</div>
