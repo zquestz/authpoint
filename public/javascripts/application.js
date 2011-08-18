@@ -1,6 +1,6 @@
-// Rollup the errors and notices after a couple seconds.
+// Rollup the errors and notices after a few seconds.
 $(document).ready(function() {
   if ($('.rollup')) {
-    $('.rollup').delay(2000).slideUp(500);
+    $('.rollup').delay(3000).slideUp(500);
   }
 });
