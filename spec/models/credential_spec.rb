@@ -15,9 +15,68 @@ describe Credential do
 
     it 'should save if we pass a valid user, provider, and uid' do
       user = Factory(:user)
-      cred = Credential.new(:user =>user, :provider => 'google', :uid => 'minimal@gmail.com')
+      cred = Credential.new(:user => user, :provider => 'google', :uid => 'minimal@gmail.com')
       cred.should be_valid
       cred.save.should be_true
+    end
+  end
+  
+  describe 'providers' do
+    context 'google' do
+      before do
+        user = Factory(:user)
+        @cred = Credential.new(:user => user, :provider => 'google', :uid => 'minimal@gmail.com')
+      end
+    
+      it 'should be a google credential' do
+        @cred.google?.should be_true
+      end
+    
+      it 'should not be a facebook credential' do
+        @cred.facebook?.should be_false
+      end
+    
+      it 'should not be a twitter credential' do
+        @cred.twitter?.should be_false
+      end
+    end
+  
+    context 'facebook' do
+      before do
+        user = Factory(:user)
+        @cred = Credential.new(:user => user, :provider => 'facebook')
+      end
+    
+      it 'should not be a google credential' do
+        @cred.google?.should be_false
+      end
+    
+      it 'should be a facebook credential' do
+        @cred.facebook?.should be_true
+      end
+    
+      it 'should not be a twitter credential' do
+        @cred.twitter?.should be_false
+      end
+    end
+  
+    context 'twitter' do
+      before do
+        user = Factory(:user)
+        @cred = Credential.new(:user => user, :provider => 'twitter')
+      end
+    
+      it 'should not be a google credential' do
+        @cred.google?.should be_false
+      end
+    
+      it 'should not be a facebook credential' do
+        @cred.facebook?.should be_false
+      end
+    
+      it 'should be a twitter credential' do
+        @cred.twitter?.should be_true
+      end
     end
   end
 

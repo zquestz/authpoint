@@ -50,4 +50,13 @@ describe ApplicationHelper do
       helper.render_flash_messages.should match(/class="\w* rollup"/)
     end
   end
+  
+  describe 'connected networks' do
+    it 'should render an icon for a provider' do
+      user = Factory(:user)
+      credential = Factory(:credential, :user => user)
+      subject.current_user = user
+      helper.connected_networks.should match(/img.*#{credential.provider}/)
+    end
+  end
 end

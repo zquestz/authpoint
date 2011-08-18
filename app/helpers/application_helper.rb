@@ -1,4 +1,7 @@
 module ApplicationHelper
+  # So we can test helpers within rspec that require current_user.
+  mattr_accessor :current_user if Rails.env.test?
+  
   # Render's flash notices and errors
   def render_flash_messages
     output = ''
@@ -24,11 +27,13 @@ module ApplicationHelper
   end
   
   def connected_networks
-    providers = current_user.credentials.map(&:provider)
     output = '<div id="networks">'
-    output += image_tag('providers/tiny/google.png') if providers.include?('google')
-    output += image_tag('providers/tiny/facebook.png') if providers.include?('facebook')
-    output += image_tag('providers/tiny/twitter.png') if providers.include?('twitter')
+    current_user.credentials.each do |credential|
+      title = "#{credential.provider.capitalize} - #{credential.uid}"
+      output += image_tag('providers/tiny/google.png', :title => title) if credential.google?
+      output += image_tag('providers/tiny/facebook.png', :title => title) if credential.facebook?
+      output += image_tag('providers/tiny/twitter.png', :title => title) if credential.twitter?
+    end
     output += '</div>'
   end
 end
