@@ -31,9 +31,7 @@ module ApplicationHelper
       output = '<div id="networks">'
       current_user.credentials.each do |credential|
         title = "#{credential.provider.capitalize} - #{credential.nickname.presence || credential.uid}"
-        output += image_tag('providers/tiny/google.png', :title => title) if credential.google?
-        output += image_tag('providers/tiny/facebook.png', :title => title) if credential.facebook?
-        output += image_tag('providers/tiny/twitter.png', :title => title) if credential.twitter?
+        output += image_tag("providers/tiny/#{credential.provider}.png", :title => title)
       end
       output += '</div>'
     end
