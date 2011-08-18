@@ -5,6 +5,10 @@ body {
   padding: 0;
   margin: 0;
   background-color: white; }
+  body .right {
+    float: right; }
+  body .left {
+    float: left; }
   body #header {
     padding: 12px;
     background-color: black;
@@ -17,10 +21,6 @@ body {
     body #header a:active, body #header a:hover {
       background-color: black;
       color: #bf0404; }
-    body #header .right {
-      float: right; }
-    body #header .left {
-      float: left; }
   body #content {
     padding: 12px;
     background-color: white; }
@@ -40,8 +40,7 @@ body {
         padding-right: 4px;
         vertical-align: middle; }
   body #message .error, body #message .notice {
-    padding: 8px 12px;
-    font-size: 12px; }
+    padding: 8px 12px; }
   body #message .error {
     color: red;
     background-color: lightred; }
