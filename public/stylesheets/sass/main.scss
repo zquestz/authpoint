@@ -1,12 +1,17 @@
-$header-background: #d0d9d6;
-$header-border: 1px solid #9ca6a2;
-$header-link: #212625;
+$header-background: black;
+$header-border: 1px solid #222;
+$header-text: white;
+$header-link: white;
 $header-link-hover: #bf0404;
 
-$flash-error-color: #bf0404;
-$flash-error-text-color: white;
-$flash-notice-color: #bf0404;
-$flash-notice-text-color: white;
+$content-background: white;
+$content-link: #bf0404;
+$content-link-hover: #222;
+
+$flash-error-color: lightred;
+$flash-error-text-color: red;
+$flash-notice-color: white;
+$flash-notice-text-color: green;
 
 * {
   font-family: Verdana, Helvetica, Arial, sans-serif;
@@ -20,7 +25,7 @@ body {
   #header {
     padding: 12px;
     background-color: $header-background;
-    color: white;
+    color: $header-text;
     border-bottom: $header-border;
     
     a, a:link, a:visited {
@@ -45,11 +50,24 @@ body {
 
   #content {
     padding: 12px;
+    background-color: $content-background;
+    
+    a, a:link, a:visited {
+      text-decoration: none;
+      background-color: $content-background;
+      color: $content-link;
+    }
+    
+    a:active, a:hover {
+      background-color: $content-background;
+      color: $content-link-hover;
+    }
     
     input {
       margin: 3px;
       padding: 4px;
     }
+    
     #networks {
       padding: 5px 5px 0 0;
       img {
@@ -62,7 +80,7 @@ body {
   #message {
     .error, .notice {
       padding: 8px 12px;
-      font-size: 11px;
+      font-size: 12px;
     }
     
     .error {

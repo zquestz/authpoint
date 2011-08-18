@@ -7,22 +7,30 @@ body {
   background-color: white; }
   body #header {
     padding: 12px;
-    background-color: #d0d9d6;
+    background-color: black;
     color: white;
-    border-bottom: 1px solid #9ca6a2; }
+    border-bottom: 1px solid #222222; }
     body #header a, body #header a:link, body #header a:visited {
       text-decoration: none;
-      background-color: #d0d9d6;
-      color: #212625; }
+      background-color: black;
+      color: white; }
     body #header a:active, body #header a:hover {
-      background-color: #d0d9d6;
+      background-color: black;
       color: #bf0404; }
     body #header .right {
       float: right; }
     body #header .left {
       float: left; }
   body #content {
-    padding: 12px; }
+    padding: 12px;
+    background-color: white; }
+    body #content a, body #content a:link, body #content a:visited {
+      text-decoration: none;
+      background-color: white;
+      color: #bf0404; }
+    body #content a:active, body #content a:hover {
+      background-color: white;
+      color: #222222; }
     body #content input {
       margin: 3px;
       padding: 4px; }
@@ -33,13 +41,13 @@ body {
         vertical-align: middle; }
   body #message .error, body #message .notice {
     padding: 8px 12px;
-    font-size: 11px; }
+    font-size: 12px; }
   body #message .error {
-    color: white;
-    background-color: #bf0404; }
+    color: red;
+    background-color: lightred; }
   body #message .notice {
-    color: white;
-    background-color: #bf0404; }
+    color: green;
+    background-color: white; }
 
 .reset {
   clear: both; }
