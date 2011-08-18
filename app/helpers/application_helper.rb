@@ -26,6 +26,7 @@ module ApplicationHelper
     (link_to(current_user.name, user_path(current_user)) + ' - ') if current_user
   end
   
+  # Display connected network badges
   def connected_networks
     if current_user
       output = '<div id="networks">'
