@@ -27,13 +27,15 @@ module ApplicationHelper
   end
   
   def connected_networks
-    output = '<div id="networks">'
-    current_user.credentials.each do |credential|
-      title = "#{credential.provider.capitalize} - #{credential.uid}"
-      output += image_tag('providers/tiny/google.png', :title => title) if credential.google?
-      output += image_tag('providers/tiny/facebook.png', :title => title) if credential.facebook?
-      output += image_tag('providers/tiny/twitter.png', :title => title) if credential.twitter?
+    if current_user
+      output = '<div id="networks">'
+      current_user.credentials.each do |credential|
+        title = "#{credential.provider.capitalize} - #{credential.nickname.presence || credential.uid}"
+        output += image_tag('providers/tiny/google.png', :title => title) if credential.google?
+        output += image_tag('providers/tiny/facebook.png', :title => title) if credential.facebook?
+        output += image_tag('providers/tiny/twitter.png', :title => title) if credential.twitter?
+      end
+      output += '</div>'
     end
-    output += '</div>'
   end
 end
