@@ -1,7 +1,4 @@
 module ApplicationHelper
-  # So we can test helpers within rspec that require current_user.
-  mattr_accessor :current_user if Rails.env.test?
-  
   # Render's flash notices and errors
   def render_flash_messages
     output = ''

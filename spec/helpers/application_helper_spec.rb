@@ -55,6 +55,7 @@ describe ApplicationHelper do
     it 'should render an icon for a provider' do
       user = Factory(:user)
       credential = Factory(:credential, :user => user)
+      subject.mattr_accessor :current_user
       subject.current_user = user
       helper.connected_networks.should match(/img.*#{credential.provider}/)
     end
