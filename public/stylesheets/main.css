@@ -40,7 +40,7 @@ body {
         padding-right: 4px;
         vertical-align: middle; }
   body #message .error, body #message .notice {
-    padding: 8px 12px 0; }
+    padding: 8px 12px 2px; }
   body #message .error {
     color: red;
     background-color: lightred; }
