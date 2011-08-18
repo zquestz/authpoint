@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  # Verifies that the name is present.
   validates_presence_of :name
 
   # Can have many oauth credentials

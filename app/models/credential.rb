@@ -1,4 +1,8 @@
 class Credential < ActiveRecord::Base
+  # Set default order alphebetically based on provider
+  default_scope :order => 'provider ASC'
+  
+  # Make sure essential data is present
   validates_presence_of :user, :provider, :uid
 
   # Belongs to a User.
