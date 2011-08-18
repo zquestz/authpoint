@@ -1,3 +1,13 @@
+$header-background: #d0d9d6;
+$header-border: 1px solid #9ca6a2;
+$header-link: #212625;
+$header-link-hover: #bf0404;
+
+$flash-error-color: #bf0404;
+$flash-error-text-color: white;
+$flash-notice-color: #bf0404;
+$flash-notice-text-color: white;
+
 * {
   font-family: Verdana, Helvetica, Arial, sans-serif;
 }
@@ -9,19 +19,19 @@ body {
 
   #header {
     padding: 12px;
-    background-color: #d0d9d6;
+    background-color: $header-background;
     color: white;
-    border-bottom: 1px solid #9ca6a2;
+    border-bottom: $header-border;
     
     a, a:link, a:visited {
       text-decoration: none;
-      background-color: #d0d9d6;
-      color: #212625;
+      background-color: $header-background;
+      color: $header-link;
     }
     
     a:active, a:hover {
-      background-color: #d0d9d6;
-      color: #bf0404;
+      background-color: $header-background;
+      color: $header-link-hover;
     }
     
     .right {
@@ -53,8 +63,16 @@ body {
     .error, .notice {
       padding: 8px 12px;
       font-size: 11px;
-      color: white;
-      background-color: #bf0404;
+    }
+    
+    .error {
+      color: $flash-error-text-color;
+      background-color: $flash-error-color;
+    }
+    
+    .notice {
+      color: $flash-notice-text-color;
+      background-color: $flash-notice-color;
     }
   }
 }

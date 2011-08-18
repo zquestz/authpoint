@@ -33,7 +33,11 @@ body {
         vertical-align: middle; }
   body #message .error, body #message .notice {
     padding: 8px 12px;
-    font-size: 11px;
+    font-size: 11px; }
+  body #message .error {
+    color: white;
+    background-color: #bf0404; }
+  body #message .notice {
     color: white;
     background-color: #bf0404; }
 
