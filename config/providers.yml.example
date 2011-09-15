@@ -4,7 +4,7 @@
     google:
       key: KEY
       secret: SECRET
-      scope: http://www.google.com/base/feeds
+      scope: https://www.googleapis.com/auth/plus.me
     facebook:
       key: KEY
       secret: SECRET
