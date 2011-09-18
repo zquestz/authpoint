@@ -1,0 +1,98 @@
+$header-background: #45484d;
+$header-border: 1px solid #222;
+$header-text: white;
+$header-link: white;
+$header-link-hover: #bf0404;
+
+$content-background: white;
+$content-link: #bf0404;
+$content-link-hover: #222;
+
+$flash-error-color: lightred;
+$flash-error-text-color: red;
+$flash-notice-color: white;
+$flash-notice-text-color: green;
+
+* {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: white;
+  
+  .right { float: right; }
+  .left { float: left; }
+
+  #header {
+    padding: 12px;
+    background-color: $header-background;
+    color: $header-text;
+    background: $header-background; /* Old browsers */
+    background: -moz-linear-gradient(top, $header-background 0%, #000000 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#45484d), color-stop(100%,#000000)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, $header-background 0%,#000000 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, $header-background 0%,#000000 100%); /* Opera11.10+ */
+    background: -ms-linear-gradient(top, $header-background 0%,#000000 100%); /* IE10+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$header-background', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+    background: linear-gradient(top, $header-background 0%,#000000 100%); /* W3C */
+    border-bottom: $header-border;
+    
+    a, a:link, a:visited {
+      text-decoration: none;
+      color: $header-link;
+    }
+    
+    a:active, a:hover {
+      color: $header-link-hover;
+    }
+  }
+
+  #content {
+    padding: 12px;
+    background-color: $content-background;
+    
+    a, a:link, a:visited {
+      text-decoration: none;
+      color: $content-link;
+    }
+    
+    a:active, a:hover {
+      color: $content-link-hover;
+    }
+    
+    input {
+      margin: 3px;
+      padding: 4px;
+    }
+    
+    .networks {
+      padding: 5px 5px 10px 0;
+      img {
+        padding-right: 6px;
+        vertical-align: middle;
+      }
+    }
+  }
+  
+  #message {
+    .error, .notice {
+      padding: 8px 12px 2px;
+    }
+    
+    .error {
+      color: $flash-error-text-color;
+      background-color: $flash-error-color;
+    }
+    
+    .notice {
+      color: $flash-notice-text-color;
+      background-color: $flash-notice-color;
+    }
+  }
+}
+
+.reset {
+  clear: both;
+}
