@@ -32,6 +32,13 @@ describe PostsController do
         get :index
         assigns(:posts).should eq([post])
       end
+      
+      it "can filter by tag" do
+        post = Factory(:post, :user => @user, :tag_list => 'awesome')
+        post2 = Factory(:post, :user => @user)
+        get :index, :tag => 'awesome'
+        assigns(:posts).should eq([post])
+      end
     end
 
     describe "GET show" do
