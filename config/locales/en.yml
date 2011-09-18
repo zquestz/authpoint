@@ -29,14 +29,14 @@ en:
         user: 'User:'
         created_at: 'Created At:'
         updated_at: 'Updated At:'
-        tag_list: 'Tags'
+        tag_list: 'Tags:'
         edit:
           message: 'Message:'
           user: 'User:'
           user_id: 'User:'
           created_at: 'Created At:'
           updated_at: 'Updated At:'
-          tag_list: 'Tags'
+          tag_list: 'Tags:'
     actions:
       create: "Create %{model}"
       update: "Update %{model}"
