@@ -1,6 +1,6 @@
 Authpoint::Application.routes.draw do
   # Homepage
-  root :to => 'posts#index'
+  root :to => 'posts#index', :via => :get
 
   # For posts
   resources :posts, :path => ''
