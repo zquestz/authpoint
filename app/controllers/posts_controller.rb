@@ -5,7 +5,11 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = current_user.posts.paginate(:page => params[:page])
+    if params[:tag].blank?
+      @posts = current_user.posts.paginate(:page => params[:page])
+    else
+      @posts = current_user.posts.tagged_with(params[:tag]).paginate(:page => params[:page])
+    end
 
     respond_to do |format|
       format.html # index.html.erb
