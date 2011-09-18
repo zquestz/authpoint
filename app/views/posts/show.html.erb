@@ -1,0 +1,26 @@
+<%= link_to t(:view_all, :scope => [:posts]), posts_path %> | <%= link_to t(:edit, :scope => [:posts]), edit_post_path(@post) %> | <%= link_to t(:delete, :scope => [:posts]), post_path(@post), :confirm => t(:delete_confirmation), :method => :delete %>
+<h2><%= t(:view, :scope => [:posts]) %></h2>
+<p>
+  <b><%= t(:user, :scope => [:formtastic, :labels, :post]) %></b>
+  <%= @post.user.name %>
+</p>
+
+<p>
+  <b><%= t(:message, :scope => [:formtastic, :labels, :post]) %></b>
+  <%= @post.message %>
+</p>
+
+<p>
+  <b><%= t(:tag_list, :scope => [:formtastic, :labels, :post]) %></b>
+  <%= @post.tag_list %>
+</p>
+
+<p>
+  <b><%= t(:created_at, :scope => [:formtastic, :labels, :post]) %></b>
+  <%= @post.created_at %>
+</p>
+
+<p>
+  <b><%= t(:updated_at, :scope => [:formtastic, :labels, :post]) %></b>
+  <%= @post.updated_at %>
+</p>

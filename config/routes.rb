@@ -1,9 +1,12 @@
 Authpoint::Application.routes.draw do
+  # Homepage
+  root :to => 'posts#index'
+
+  # For posts
+  resources :posts
+
   # For user management
   resources :users, :only => [:show, :edit, :update, :destroy]
-
-  # Homepage
-  root :to => 'main#index'
   
   # Privacy Policy
   get 'privacy', :to => 'main#privacy', :as => :privacy

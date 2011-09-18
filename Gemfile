@@ -7,6 +7,8 @@ gem 'jquery-rails'
 gem 'newrelic_rpm'
 gem 'omniauth'
 gem 'formtastic'
+gem 'acts-as-taggable-on'
+gem 'will_paginate'
 
 # Gems used only for assets and not required
 # in production environments by default.

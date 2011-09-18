@@ -14,18 +14,43 @@ en:
     no_auth_data: "Sorry, we didn't recieve any authentication data."
     logged_out: 'You have been logged out.'
     access_denied: 'Access denied.'
-    user_updated: 'Account was successfully updated.'    
+    user_updated: 'Account was successfully updated.'
+    post_created: 'Post was successfully created.'
+    post_updated: 'Post was successfully updated.'
   formtastic:
     labels:
       user:
-        name: "Name"
+        name: 'Name'
         edit:
-          name: "Name"
+          name: 'Name'
+      post:
+        message: 'Message:'
+        user_id: 'User:'
+        user: 'User:'
+        created_at: 'Created At:'
+        updated_at: 'Updated At:'
+        tag_list: 'Tags'
+        edit:
+          message: 'Message:'
+          user: 'User:'
+          user_id: 'User:'
+          created_at: 'Created At:'
+          updated_at: 'Updated At:'
+          tag_list: 'Tags'
     actions:
       create: "Create %{model}"
       update: "Update %{model}"
       user:
-        update: "Update Account"
+        update: 'Update Account'
   users:
     edit: 'Edit Account'
     delete: 'Delete Account'
+    view: 'View Account'
+  posts:
+    edit: 'Edit Post'
+    delete: 'Delete Post'
+    view: 'View Post'
+    view_all: 'View All Posts'
+    new: 'New Post'
+    list: "Posts - %{name}"
+    none: 'There are currently no posts.'

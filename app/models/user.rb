@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
 
   # Can have many oauth credentials
   has_many :credentials, :dependent => :destroy
+  
+  # Can have many posts
+  has_many :posts, :dependent => :destroy
 
   # Slug the url.
   def to_param

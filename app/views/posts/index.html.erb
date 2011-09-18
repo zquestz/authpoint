@@ -1,0 +1,18 @@
+<%= link_to t(:new, :scope => [:posts]), new_post_path %>
+<h2><%= t(:list, :scope => [:posts], :name => current_user.name ) %></h2>
+
+<% if @posts.empty? %>
+<p><%= t(:none, :scope => [:posts]) %></p>
+<% end %>
+
+<% @posts.each do |post| %>
+<div class="full_post">
+  <p><%= post.message %></p>
+  <p><%= t(:tag_list, :scope => [:formtastic, :labels, :post]) %>: <%= post.tag_list %></p>
+  <%= link_to t(:view, :scope => [:posts]), post_path(post) %> | 
+  <%= link_to t(:edit, :scope => [:posts]), edit_post_path(post) %> | 
+  <%= link_to t(:delete, :scope => [:posts]), post_path(post), :confirm => t(:delete_confirmation), :method => :delete %> -
+  Last Edited: <%= post.updated_at || post.created_at %>
+</div>
+<% end %>
+<%= will_paginate @posts %>
