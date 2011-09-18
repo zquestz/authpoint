@@ -11,9 +11,9 @@ describe PostsHelper do
     end
     
     it 'should output a list of linked tags' do
-      @post.tag_list = 'tag1, tag2, tag3, tag4'
+      @post.tag_list = 'tag1, tag2, tag3'
       @post.save
-      linked_tag_list(@post).should match(/.*tag=tag1.*>tag1<\/a>,.*tag=tag2.*>tag2<\/a>,.*tag=tag3.*>tag3<\/a>,.*tag=tag4.*>tag4<\/a>/)
+      linked_tag_list(@post).should match(/.*tag=tag1.*>tag1<\/a>,.*tag=tag2.*>tag2<\/a>,.*tag=tag3.*>tag3<\/a>/)
     end
   end
 end
