@@ -8,7 +8,7 @@
 <% @posts.each do |post| %>
 <div class="full_post">
   <p><%= post.message %></p>
-  <p><%= t(:tag_list, :scope => [:formtastic, :labels, :post]) %>: <%= post.tag_list %></p>
+  <p><%= t(:tag_list, :scope => [:formtastic, :labels, :post]) %> <%= post.tag_list %></p>
   <%= link_to t(:view, :scope => [:posts]), post_path(post) %> | 
   <%= link_to t(:edit, :scope => [:posts]), edit_post_path(post) %> | 
   <%= link_to t(:delete, :scope => [:posts]), post_path(post), :confirm => t(:delete_confirmation), :method => :delete %> -
