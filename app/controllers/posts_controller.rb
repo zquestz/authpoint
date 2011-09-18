@@ -1,14 +1,15 @@
 class PostsController < ApplicationController
+  skip_before_filter :store_location, :except => [:index, :show]
   before_filter :require_login
   before_filter :verify_user, :only => [:show, :edit, :update, :destroy]
 
   # GET /posts
   # GET /posts.json
   def index
-    if params[:tag].blank?
-      @posts = current_user.posts.paginate(:page => params[:page])
-    else
+    if params[:tag].present?
       @posts = current_user.posts.tagged_with(params[:tag]).paginate(:page => params[:page])
+    else
+      @posts = current_user.posts.paginate(:page => params[:page])
     end
 
     respond_to do |format|
