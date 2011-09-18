@@ -3,7 +3,7 @@
   <head>
     <title><%= t(:app) -%></title>
     <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
-    <%= stylesheet_link_tag :all %>
+    <%= stylesheet_link_tag "application" %>
     <%= yield :stylesheets %>
     <%= csrf_meta_tag %>
   </head>
@@ -13,7 +13,7 @@
     <div id="content">
       <%= yield %>
     </div>
-    <%= javascript_include_tag :defaults, :cache => 'app' %>
+    <%= javascript_include_tag "application" %>
     <%= yield :javascripts %>
   </body>
 </html>

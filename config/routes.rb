@@ -15,7 +15,7 @@ Authpoint::Application.routes.draw do
   get 'auth/tumblr/callback', :to => 'oauth_callbacks#tumblr'
   get 'auth/failure', :to => 'oauth_callbacks#failure'
   get 'logout', :to => 'oauth_callbacks#logout', :as => :logout
-
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -65,7 +65,7 @@ Authpoint::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => "welcome#index"
+  # root :to => 'welcome#index'
 
   # See how all your routes lay out with "rake routes"
 
