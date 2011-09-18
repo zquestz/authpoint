@@ -41,10 +41,18 @@ describe PostsController do
       end
       
       it "should paginate" do
-        25.times do
+        (Post.per_page + 1).times do
           Factory(:post, :user => @user)
         end
         get :index
+        assigns(:posts).size.should == Post.per_page
+      end
+      
+      it "should paginate while filtering by tag" do
+        (Post.per_page + 1).times do
+          Factory(:post, :user => @user, :tag_list => 'awesome')
+        end
+        get :index, :tag => 'awesome'
         assigns(:posts).size.should == Post.per_page
       end
     end
