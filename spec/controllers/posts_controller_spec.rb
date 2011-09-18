@@ -39,6 +39,14 @@ describe PostsController do
         get :index, :tag => 'awesome'
         assigns(:posts).should eq([post])
       end
+      
+      it "should paginate" do
+        25.times do
+          Factory(:post, :user => @user)
+        end
+        get :index
+        assigns(:posts).size.should == Post.per_page
+      end
     end
 
     describe "GET show" do
