@@ -3,7 +3,7 @@ Authpoint::Application.routes.draw do
   root :to => 'posts#index'
 
   # For posts
-  resources :posts
+  resources :posts, :path => ''
 
   # For user management
   resources :users, :only => [:show, :edit, :update, :destroy]
