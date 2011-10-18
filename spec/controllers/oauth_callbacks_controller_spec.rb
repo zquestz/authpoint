@@ -4,7 +4,7 @@ describe OauthCallbacksController do
 
   describe 'GET #google with request env' do
     before do
-      request.env['omniauth.auth'] = {'provider' => 'google', 'uid' => 'someone@gmail.com'}
+      request.env['omniauth.auth'] = {'provider' => 'google_oauth2', 'uid' => 'someone@gmail.com'}
     end
 
     it 'should redirect and have auth success notice' do
@@ -24,7 +24,7 @@ describe OauthCallbacksController do
 
   describe 'GET #google with bad request env' do
     before do
-      request.env['omniauth.auth'] = {'provider' => 'google'}
+      request.env['omniauth.auth'] = {'provider' => 'google_oauth2'}
     end
 
     it 'should redirect and have create user error' do

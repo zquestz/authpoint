@@ -26,7 +26,7 @@ module ApplicationHelper
   # Displays an icon for each network with an auth link
   def connect_networks
     output = link_to(image_tag('providers/32px/facebook.png'), '/auth/facebook')
-    output += link_to(image_tag('providers/32px/google.png'), '/auth/google')
+    output += link_to(image_tag('providers/32px/google.png'), '/auth/google_oauth2')
     output += link_to(image_tag('providers/32px/tumblr.png'), '/auth/tumblr') 
     output += link_to(image_tag('providers/32px/twitter.png'), '/auth/twitter')
   end

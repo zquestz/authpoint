@@ -12,7 +12,7 @@ Authpoint::Application.routes.draw do
   get 'privacy', :to => 'main#privacy', :as => :privacy
   
   # Omniauth routes
-  get 'auth/google/callback', :to => 'oauth_callbacks#google'
+  get 'auth/google_oauth2/callback', :to => 'oauth_callbacks#google'
   get 'auth/facebook/callback', :to => 'oauth_callbacks#facebook'
   get 'auth/twitter/callback', :to => 'oauth_callbacks#twitter'
   get 'auth/tumblr/callback', :to => 'oauth_callbacks#tumblr'

@@ -8,14 +8,14 @@ describe Credential do
     end
 
     it 'should not save if there is no user' do
-      cred = Credential.new(:provider => 'google', :uid => 'minimal@gmail.com')
+      cred = Credential.new(:provider => 'google_oauth2', :uid => 'minimal@gmail.com')
       cred.should_not be_valid
       cred.save.should be_false
     end
 
     it 'should save if we pass a valid user, provider, and uid' do
       user = Factory(:user)
-      cred = Credential.new(:user => user, :provider => 'google', :uid => 'minimal@gmail.com')
+      cred = Credential.new(:user => user, :provider => 'google_oauth2', :uid => 'minimal@gmail.com')
       cred.should be_valid
       cred.save.should be_true
     end
@@ -25,7 +25,7 @@ describe Credential do
     context 'google' do
       before do
         user = Factory(:user)
-        @cred = Credential.new(:user => user, :provider => 'google', :uid => 'minimal@gmail.com')
+        @cred = Credential.new(:user => user, :provider => 'google_oauth2', :uid => 'minimal@gmail.com')
       end
     
       it 'should be a google credential' do

@@ -16,7 +16,10 @@ class CreateCredentials < ActiveRecord::Migration
       t.text :urls
       t.string :token
       t.string :secret
+      t.string :refresh_token
+      t.string :expires_at
       t.text :user_hash
+      t.text :profile_api_data
       t.timestamps
     end
     add_index :credentials, [:provider, :uid]

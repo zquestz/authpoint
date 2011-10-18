@@ -10,7 +10,11 @@ module AuthSystem
   # Get current user
   def current_user
     if current_user_id
-      @current_user ||= User.find(current_user_id, :include => :credentials)
+      begin
+        @current_user ||= User.find(current_user_id, :include => :credentials)
+      rescue
+        session[:user_id] = nil
+      end
     else
       @current_user = nil
     end

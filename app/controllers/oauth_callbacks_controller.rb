@@ -3,13 +3,13 @@ class OauthCallbacksController < ApplicationController
   before_filter :init_user, :except => [:failure, :logout]
 
   # Auth with google and other services.
-  def google
+  def facebook
     flash[:notice] = t(:auth_success, :scope => [:flash])
     redirect_back_or_default(root_path)
   end
-  alias :facebook :google
-  alias :twitter :google
-  alias :tumblr :google
+  alias :google :facebook
+  alias :twitter :facebook
+  alias :tumblr :facebook
 
   # Failure route
   def failure

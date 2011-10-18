@@ -29,7 +29,10 @@ ActiveRecord::Schema.define(:version => 20110918074351) do
     t.text     "urls"
     t.string   "token"
     t.string   "secret"
+    t.string   "refresh_token"
+    t.string   "expires_at"
     t.text     "user_hash"
+    t.text     "profile_api_data"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

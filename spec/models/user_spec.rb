@@ -24,7 +24,7 @@ describe User do
   describe 'oauth import' do
     before do
       @auth_data = {
-        'provider' => 'google',
+        'provider' => 'google_oauth2',
         'uid' => 'someone@gmail.com',
         'user_info' => {
           'name' => 'someone',
@@ -40,7 +40,8 @@ describe User do
         },
         'credentials' => {
           'token' => 'TOKEN',
-          'secret' => 'SECRET'
+          'secret' => 'SECRET',
+          'refresh_token' => 'REFRESH_TOKEN'
         },
         'extra' => {
           'user_hash' => "---\nversion: '1.0'\nencoding: UTF-8\nfeed:\n  xmlns: h..."
@@ -57,6 +58,15 @@ describe User do
         user = User.initialize_with_oauth_data(@auth_data, current_user)
         User.count.should == 1
         Credential.count.should == 1
+      end
+
+      it 'should have a token and refresh_token if provided' do
+        user = User.initialize_with_oauth_data(@auth_data, current_user)
+        cred = user.credentials.first
+        cred.token.should == 'TOKEN'
+        cred.refresh_token.should == 'REFRESH_TOKEN'
+        user.should be_valid
+        cred.should be_valid
       end
 
       it 'should import auth data and ignore extra data' do
