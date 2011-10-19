@@ -5,5 +5,9 @@ module Providers
     def profile_info(credential)
       {}
     end
+
+    def self.provider_name
+      'Default'
+    end
   end
 end

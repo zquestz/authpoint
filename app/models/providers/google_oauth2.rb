@@ -30,6 +30,10 @@ class Providers::GoogleOauth2 < Providers::Default
     end
   end
 
+  def self.provider_name
+    'Google'
+  end
+
   protected
 
   def init_api_object

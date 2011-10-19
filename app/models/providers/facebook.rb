@@ -13,4 +13,8 @@ class Providers::Facebook < Providers::Default
   rescue Koala::Facebook::APIError => e
     {}
   end
+
+  def self.provider_name
+    'Facebook'
+  end
 end

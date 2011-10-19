@@ -36,9 +36,20 @@ class Credential < ActiveRecord::Base
     "#{id}-#{uid.parameterize}"
   end
 
+  # The provider name
+  def provider_name
+    provider_class.provider_name
+  end
+
   protected
 
+  # Update profile info from API
   def update_profile_info
-    self.attributes = eval("::Providers::#{self.provider.camelize}.new.profile_info(self)")
+    self.attributes = provider_class.new.profile_info(self)
+  end
+
+  # Class that provides API interaction
+  def provider_class
+    eval("::Providers::#{self.provider.camelize}")
   end
 end
