@@ -21,7 +21,7 @@ class Providers::GoogleOauth2 < Providers::Default
       attrs.merge!({ 
         :description => profile['tagline']
       }) if profile['tagline']
-      
+
       attrs.merge!({ 
         :image => profile['image']['url']
       }) if profile['image'] && profile['image']['url']
@@ -49,17 +49,28 @@ class Providers::GoogleOauth2 < Providers::Default
       'plusPages', 'v1',
       open("#{Rails.root}/config/api/plusPages-v1.json") { |f| f.read }
     )
-    
+
     @plus_api = @api_object.discovered_api('plusPages', 'v1')
   end
 
-  def update_token(credential)
+  def update_token(credential, options = {})
     return false unless credential.refresh_token && credential.token && credential.expires_at
-    
-    @api_object.authorization.update_token!({
+
+    auth_info = @api_object.authorization.update_token!({
       :refresh_token => credential.refresh_token,
       :access_token => credential.token,
-      :expires_in => credential.expires_at
+      :expires_in => credential.expires_at,
+      :issued_at => credential.issued_at
     })
+
+    if auth_info
+      credential.token = auth_info.access_token unless credential.token == auth_info.access_token
+      credential.refresh_token = auth_info.refresh_token unless credential.refresh_token == auth_info.refresh_token
+      credential.expires_at = auth_info.expires_in unless credential.expires_at == auth_info.expires_in
+      credential.issued_at = auth_info.issued_at unless credential.issued_at == auth_info.issued_at
+      credential.save if options[:save] == true && credential.changed?
+    end
+
+    auth_info
   end
 end

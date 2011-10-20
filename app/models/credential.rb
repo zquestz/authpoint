@@ -50,6 +50,6 @@ class Credential < ActiveRecord::Base
 
   # Class that provides API interaction
   def provider_class
-    eval("::Providers::#{self.provider.camelize}")
+    "::Providers::#{self.provider.camelize}".constantize
   end
 end

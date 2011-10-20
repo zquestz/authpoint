@@ -17,7 +17,8 @@ class CreateCredentials < ActiveRecord::Migration
       t.string :token
       t.string :secret
       t.string :refresh_token
-      t.string :expires_at
+      t.integer :expires_at
+      t.datetime :issued_at
       t.text :user_hash
       t.text :profile_api_data
       t.timestamps
