@@ -64,10 +64,10 @@ class Providers::GoogleOauth2 < Providers::Default
     })
 
     if auth_info
-      credential.token = auth_info.access_token unless credential.token == auth_info.access_token
-      credential.refresh_token = auth_info.refresh_token unless credential.refresh_token == auth_info.refresh_token
-      credential.expires_at = auth_info.expires_in unless credential.expires_at == auth_info.expires_in
-      credential.issued_at = auth_info.issued_at unless credential.issued_at == auth_info.issued_at
+      credential.token = auth_info.access_token
+      credential.refresh_token = auth_info.refresh_token
+      credential.expires_at = auth_info.expires_in
+      credential.issued_at = auth_info.issued_at
       credential.save if options[:save] == true && credential.changed?
     end
 
