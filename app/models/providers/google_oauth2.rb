@@ -5,6 +5,7 @@ class Providers::GoogleOauth2 < Providers::Default
     super
   end
 
+  # Update profile info.
   def profile_info(credential)
     if update_token(credential)
       status, headers, body = @api_object.execute(
@@ -27,6 +28,187 @@ class Providers::GoogleOauth2 < Providers::Default
       }) if profile['image'] && profile['image']['url']
 
       attrs
+    end
+  end
+
+  # List all activities
+  # https://code.google.com/+/partners/pages/api/activities/list.html
+  def list_activities(credential, options = {})
+    if update_token(credential)
+      default_options = {
+        'collection' => 'all',
+        'userId' => 'me'
+      }
+
+      options = default_options.merge(options)
+      
+      status, headers, body = @api_object.execute(
+        @plus_api.activities.list,
+        options
+      )
+      JSON.parse(body[0])
+    end
+  end
+
+  # Get an activity
+  # https://code.google.com/+/partners/pages/api/activities/get.html
+  def get_activity(credential, options = {})
+    if update_token(credential)
+      status, headers, body = @api_object.execute(
+        @plus_api.activities.get,
+        options
+      )
+      JSON.parse(body[0])
+    end
+  end
+
+  # Insert an activity
+  # https://code.google.com/+/partners/pages/api/activities/insert.html
+  def insert_activity(credential, options = {})
+    if update_token(credential)
+      default_options = {
+        'userId' => 'me'
+      }
+
+      options = default_options.merge(options)
+
+      status, headers, body = @api_object.execute(
+        @plus_api.activities.insert,
+        options
+      )
+      JSON.parse(body[0])
+    end
+  end
+
+  # Update an activity
+  # https://code.google.com/+/partners/pages/api/activities/update.html
+  def update_activity(credential, options = {})
+    if update_token(credential)
+      status, headers, body = @api_object.execute(
+        @plus_api.activities.update,
+        options
+      )
+      JSON.parse(body[0])
+    end
+  end
+
+  # List activities by circle
+  # https://code.google.com/+/partners/pages/api/activities/listByCircle.html
+  def list_activities_by_circle(credential, options = {})
+    if update_token(credential)      
+      status, headers, body = @api_object.execute(
+        @plus_api.activities.list_by_circle,
+        options
+      )
+      JSON.parse(body[0])
+    end
+  end
+
+  # Search activities
+  # https://code.google.com/+/partners/pages/api/activities/search.html
+  def search_activities(credential, options = {})
+    if update_token(credential)      
+      status, headers, body = @api_object.execute(
+        @plus_api.activities.search,
+        options
+      )
+      JSON.parse(body[0])
+    end
+  end
+
+  # Remove activity
+  # https://code.google.com/+/partners/pages/api/activities/remove.html
+  def remove_activity(credential, options = {})
+    if update_token(credential)      
+      status, headers, body = @api_object.execute(
+        @plus_api.activities.remove,
+        options
+      )
+      JSON.parse(body[0])
+    end
+  end
+  
+  # List all circles.
+  # https://code.google.com/+/partners/pages/api/circles/list.html
+  def list_circles(credential, options = {})
+    if update_token(credential)
+      default_options = {
+        'userId' => 'me'
+      }
+
+      options = default_options.merge(options)
+      
+      status, headers, body = @api_object.execute(
+        @plus_api.circles.list,
+        options
+      )
+      JSON.parse(body[0])
+    end
+  end
+  
+  # Get circle.
+  # https://code.google.com/+/partners/pages/api/circles/get.html
+  def get_circle(credential, options = {})
+    if update_token(credential)
+      status, headers, body = @api_object.execute(
+        @plus_api.circles.get,
+        options
+      )
+      JSON.parse(body[0])
+    end
+  end
+  
+  # Insert circle.
+  # https://code.google.com/+/partners/pages/api/circles/insert.html
+  def insert_circle(credential, options = {})
+    if update_token(credential)
+      default_options = {
+        'userId' => 'me'
+      }
+
+      options = default_options.merge(options)
+      
+      status, headers, body = @api_object.execute(
+        @plus_api.circles.insert,
+        options
+      )
+      JSON.parse(body[0])
+    end
+  end
+  
+  # Update circle.
+  # https://code.google.com/+/partners/pages/api/circles/update.html
+  def update_circle(credential, options = {})
+    if update_token(credential)
+      status, headers, body = @api_object.execute(
+        @plus_api.circles.update,
+        options
+      )
+      JSON.parse(body[0])
+    end
+  end
+  
+  # Remove circle.
+  # https://code.google.com/+/partners/pages/api/circles/remove.html
+  def remove_circle(credential, options = {})
+    if update_token(credential)
+      status, headers, body = @api_object.execute(
+        @plus_api.circles.remove,
+        options
+      )
+      JSON.parse(body[0])
+    end
+  end
+
+  # List people by activity
+  # https://code.google.com/+/partners/pages/api/people/listByActivity.html
+  def list_people_by_activity(credential, options = {})
+    if update_token(credential)
+      status, headers, body = @api_object.execute(
+        @plus_api.people.list_by_activity,
+        options
+      )
+      JSON.parse(body[0])
     end
   end
 
