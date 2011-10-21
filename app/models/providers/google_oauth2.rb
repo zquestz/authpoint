@@ -33,18 +33,18 @@ class Providers::GoogleOauth2 < Providers::Default
 
   # List all activities
   # https://code.google.com/+/partners/pages/api/activities/list.html
-  def list_activities(credential, options = {})
+  def list_activities(credential, params = {})
     if update_token(credential)
-      default_options = {
+      default_params = {
         'collection' => 'all',
         'userId' => 'me'
       }
 
-      options = default_options.merge(options)
+      params = default_params.merge(params)
       
       status, headers, body = @api_object.execute(
         @plus_api.activities.list,
-        options
+        params
       )
       JSON.parse(body[0])
     end
@@ -52,11 +52,11 @@ class Providers::GoogleOauth2 < Providers::Default
 
   # Get an activity
   # https://code.google.com/+/partners/pages/api/activities/get.html
-  def get_activity(credential, options = {})
+  def get_activity(credential, params = {})
     if update_token(credential)
       status, headers, body = @api_object.execute(
         @plus_api.activities.get,
-        options
+        params
       )
       JSON.parse(body[0])
     end
@@ -64,17 +64,19 @@ class Providers::GoogleOauth2 < Providers::Default
 
   # Insert an activity
   # https://code.google.com/+/partners/pages/api/activities/insert.html
-  def insert_activity(credential, options = {})
+  def insert_activity(credential, params = {}, request_body = {})
     if update_token(credential)
-      default_options = {
+      default_params = {
         'userId' => 'me'
       }
 
-      options = default_options.merge(options)
+      params = default_params.merge(params)
 
       status, headers, body = @api_object.execute(
         @plus_api.activities.insert,
-        options
+        params,
+        request_body.to_json,
+        {'Content-Type' => 'application/json'}
       )
       JSON.parse(body[0])
     end
@@ -82,11 +84,13 @@ class Providers::GoogleOauth2 < Providers::Default
 
   # Update an activity
   # https://code.google.com/+/partners/pages/api/activities/update.html
-  def update_activity(credential, options = {})
+  def update_activity(credential, params = {}, request_body = {})
     if update_token(credential)
       status, headers, body = @api_object.execute(
         @plus_api.activities.update,
-        options
+        params,
+        request_body.to_json,
+        {'Content-Type' => 'application/json'}
       )
       JSON.parse(body[0])
     end
@@ -94,11 +98,11 @@ class Providers::GoogleOauth2 < Providers::Default
 
   # List activities by circle
   # https://code.google.com/+/partners/pages/api/activities/listByCircle.html
-  def list_activities_by_circle(credential, options = {})
+  def list_activities_by_circle(credential, params = {})
     if update_token(credential)      
       status, headers, body = @api_object.execute(
         @plus_api.activities.list_by_circle,
-        options
+        params
       )
       JSON.parse(body[0])
     end
@@ -106,11 +110,11 @@ class Providers::GoogleOauth2 < Providers::Default
 
   # Search activities
   # https://code.google.com/+/partners/pages/api/activities/search.html
-  def search_activities(credential, options = {})
+  def search_activities(credential, params = {})
     if update_token(credential)      
       status, headers, body = @api_object.execute(
         @plus_api.activities.search,
-        options
+        params
       )
       JSON.parse(body[0])
     end
@@ -118,11 +122,11 @@ class Providers::GoogleOauth2 < Providers::Default
 
   # Remove activity
   # https://code.google.com/+/partners/pages/api/activities/remove.html
-  def remove_activity(credential, options = {})
+  def remove_activity(credential, params = {})
     if update_token(credential)      
       status, headers, body = @api_object.execute(
         @plus_api.activities.remove,
-        options
+        params
       )
       JSON.parse(body[0])
     end
@@ -130,17 +134,17 @@ class Providers::GoogleOauth2 < Providers::Default
   
   # List all circles.
   # https://code.google.com/+/partners/pages/api/circles/list.html
-  def list_circles(credential, options = {})
+  def list_circles(credential, params = {})
     if update_token(credential)
-      default_options = {
+      default_params = {
         'userId' => 'me'
       }
 
-      options = default_options.merge(options)
+      params = default_params.merge(params)
       
       status, headers, body = @api_object.execute(
         @plus_api.circles.list,
-        options
+        params
       )
       JSON.parse(body[0])
     end
@@ -148,11 +152,11 @@ class Providers::GoogleOauth2 < Providers::Default
   
   # Get circle.
   # https://code.google.com/+/partners/pages/api/circles/get.html
-  def get_circle(credential, options = {})
+  def get_circle(credential, params = {})
     if update_token(credential)
       status, headers, body = @api_object.execute(
         @plus_api.circles.get,
-        options
+        params
       )
       JSON.parse(body[0])
     end
@@ -160,17 +164,19 @@ class Providers::GoogleOauth2 < Providers::Default
   
   # Insert circle.
   # https://code.google.com/+/partners/pages/api/circles/insert.html
-  def insert_circle(credential, options = {})
+  def insert_circle(credential, params = {}, request_body = {})
     if update_token(credential)
-      default_options = {
+      default_params = {
         'userId' => 'me'
       }
 
-      options = default_options.merge(options)
+      params = default_params.merge(params)
       
       status, headers, body = @api_object.execute(
         @plus_api.circles.insert,
-        options
+        params,
+        request_body.to_json,
+        {'Content-Type' => 'application/json'}
       )
       JSON.parse(body[0])
     end
@@ -178,11 +184,13 @@ class Providers::GoogleOauth2 < Providers::Default
   
   # Update circle.
   # https://code.google.com/+/partners/pages/api/circles/update.html
-  def update_circle(credential, options = {})
+  def update_circle(credential, params = {}, request_body = {})
     if update_token(credential)
       status, headers, body = @api_object.execute(
         @plus_api.circles.update,
-        options
+        params,
+        request_body.to_json,
+        {'Content-Type' => 'application/json'}
       )
       JSON.parse(body[0])
     end
@@ -190,11 +198,11 @@ class Providers::GoogleOauth2 < Providers::Default
   
   # Remove circle.
   # https://code.google.com/+/partners/pages/api/circles/remove.html
-  def remove_circle(credential, options = {})
+  def remove_circle(credential, params = {})
     if update_token(credential)
       status, headers, body = @api_object.execute(
         @plus_api.circles.remove,
-        options
+        params
       )
       JSON.parse(body[0])
     end
@@ -202,11 +210,11 @@ class Providers::GoogleOauth2 < Providers::Default
 
   # List people by activity
   # https://code.google.com/+/partners/pages/api/people/listByActivity.html
-  def list_people_by_activity(credential, options = {})
+  def list_people_by_activity(credential, params = {})
     if update_token(credential)
       status, headers, body = @api_object.execute(
         @plus_api.people.list_by_activity,
-        options
+        params
       )
       JSON.parse(body[0])
     end
