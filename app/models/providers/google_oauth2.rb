@@ -53,6 +53,8 @@ class Providers::GoogleOauth2 < Providers::Default
   # Get an activity
   # https://code.google.com/+/partners/pages/api/activities/get.html
   def get_activity(credential, params = {})
+    return false unless check_required_params(params, ['activityId'])
+
     if update_token(credential)
       status, headers, body = @api_object.execute(
         @plus_api.activities.get,
@@ -85,6 +87,8 @@ class Providers::GoogleOauth2 < Providers::Default
   # Update an activity
   # https://code.google.com/+/partners/pages/api/activities/update.html
   def update_activity(credential, params = {}, request_body = {})
+    return false unless check_required_params(params, ['activityId'])
+
     if update_token(credential)
       status, headers, body = @api_object.execute(
         @plus_api.activities.update,
@@ -99,6 +103,8 @@ class Providers::GoogleOauth2 < Providers::Default
   # List activities by circle
   # https://code.google.com/+/partners/pages/api/activities/listByCircle.html
   def list_activities_by_circle(credential, params = {})
+    return false unless check_required_params(params, ['circleId'])
+
     if update_token(credential)      
       status, headers, body = @api_object.execute(
         @plus_api.activities.list_by_circle,
@@ -123,6 +129,8 @@ class Providers::GoogleOauth2 < Providers::Default
   # Remove activity
   # https://code.google.com/+/partners/pages/api/activities/remove.html
   def remove_activity(credential, params = {})
+    return false unless check_required_params(params, ['activityId'])
+
     if update_token(credential)      
       status, headers, body = @api_object.execute(
         @plus_api.activities.remove,
@@ -153,6 +161,8 @@ class Providers::GoogleOauth2 < Providers::Default
   # Get circle.
   # https://code.google.com/+/partners/pages/api/circles/get.html
   def get_circle(credential, params = {})
+    return false unless check_required_params(params, ['circleId'])
+
     if update_token(credential)
       status, headers, body = @api_object.execute(
         @plus_api.circles.get,
@@ -185,6 +195,8 @@ class Providers::GoogleOauth2 < Providers::Default
   # Update circle.
   # https://code.google.com/+/partners/pages/api/circles/update.html
   def update_circle(credential, params = {}, request_body = {})
+    return false unless check_required_params(params, ['circleId'])
+
     if update_token(credential)
       status, headers, body = @api_object.execute(
         @plus_api.circles.update,
@@ -199,6 +211,8 @@ class Providers::GoogleOauth2 < Providers::Default
   # Remove circle.
   # https://code.google.com/+/partners/pages/api/circles/remove.html
   def remove_circle(credential, params = {})
+    return false unless check_required_params(params, ['circleId'])
+
     if update_token(credential)
       status, headers, body = @api_object.execute(
         @plus_api.circles.remove,
@@ -208,12 +222,170 @@ class Providers::GoogleOauth2 < Providers::Default
     end
   end
 
+  # List comments on activity
+  # https://code.google.com/+/partners/pages/api/comments/list.html
+  def list_comments(credential, params = {})
+    return false unless check_required_params(params, ['activityId'])
+
+    if update_token(credential)
+      status, headers, body = @api_object.execute(
+        @plus_api.comments.list,
+        params
+      )
+      JSON.parse(body[0])
+    end
+  end
+
+  # Get a comment
+  # https://code.google.com/+/partners/pages/api/comments/get.html
+  def get_comment(credential, params = {})
+    return false unless check_required_params(params, ['commentId'])
+
+    if update_token(credential)
+      status, headers, body = @api_object.execute(
+        @plus_api.comments.get,
+        params
+      )
+      JSON.parse(body[0])
+    end
+  end
+
+  # Insert comment
+  # https://code.google.com/+/partners/pages/api/comments/insert.html
+  def insert_comment(credential, params = {}, request_body = {})
+    return false unless check_required_params(params, ['activityId'])
+
+    if update_token(credential)
+      status, headers, body = @api_object.execute(
+        @plus_api.comments.insert,
+        params,
+        request_body.to_json,
+        {'Content-Type' => 'application/json'}
+      )
+      JSON.parse(body[0])
+    end
+  end
+
+  # Update comment
+  # https://code.google.com/+/partners/pages/api/comments/update.html
+  def update_comment(credential, params = {}, request_body = {})
+    return false unless check_required_params(params, ['commentId'])
+
+    if update_token(credential)
+      status, headers, body = @api_object.execute(
+        @plus_api.comments.update,
+        params,
+        request_body.to_json,
+        {'Content-Type' => 'application/json'}
+      )
+      JSON.parse(body[0])
+    end
+  end
+
+  # Remove a comment
+  # https://code.google.com/+/partners/pages/api/comments/remove.html
+  def remove_comment(credential, params = {})
+    return false unless check_required_params(params, ['commentId'])
+
+    if update_token(credential)
+      status, headers, body = @api_object.execute(
+        @plus_api.comments.remove,
+        params
+      )
+      JSON.parse(body[0])
+    end
+  end
+
+  # List people
+  # https://code.google.com/+/partners/pages/api/people/list.html
+  def list_people(credential, params = {})
+    return false unless check_required_params(params, ['userId', 'collection'])
+
+    if update_token(credential)
+      status, headers, body = @api_object.execute(
+        @plus_api.people.list,
+        params
+      )
+      JSON.parse(body[0])
+    end
+  end
+
+  # Get person
+  # https://code.google.com/+/partners/pages/api/people/get.html
+  def get_person(credential, params = {})
+    return false unless check_required_params(params, ['userId'])
+
+    if update_token(credential)
+      status, headers, body = @api_object.execute(
+        @plus_api.people.get,
+        params
+      )
+      JSON.parse(body[0])
+    end
+  end
+
+  # Search people
+  # https://code.google.com/+/partners/pages/api/people/search.html
+  def search_people(credential, params = {})
+    if update_token(credential)
+      status, headers, body = @api_object.execute(
+        @plus_api.people.search,
+        params
+      )
+      JSON.parse(body[0])
+    end
+  end
+
+  # Add to circle
+  # https://code.google.com/+/partners/pages/api/people/addToCircle.html
+  def add_person_to_circle(credential, params = {})
+    return false unless check_required_params(params, ['circleId', 'userId'])
+
+    if update_token(credential)
+      status, headers, body = @api_object.execute(
+        @plus_api.people.add_to_circle,
+        params
+      )
+      JSON.parse(body[0])
+    end
+  end
+
+  # Remove from circle
+  # https://code.google.com/+/partners/pages/api/people/removeFromCircle.html
+  def remove_person_from_circle(credential, params = {})
+    return false unless check_required_params(params, ['circleId', 'userId'])
+
+    if update_token(credential)
+      status, headers, body = @api_object.execute(
+        @plus_api.people.remove_from_circle,
+        params
+      )
+      JSON.parse(body[0])
+    end
+  end
+
   # List people by activity
   # https://code.google.com/+/partners/pages/api/people/listByActivity.html
   def list_people_by_activity(credential, params = {})
+    return false unless check_required_params(params, ['activityId', 'collection'])
+
     if update_token(credential)
       status, headers, body = @api_object.execute(
         @plus_api.people.list_by_activity,
+        params
+      )
+      JSON.parse(body[0])
+    end
+  end
+
+  # List people by circle
+  # https://code.google.com/+/partners/pages/api/people/listByCircle.html
+  def list_people_by_circle(credential, params = {})
+    return false unless check_required_params(params, ['circleId'])
+
+    if update_token(credential)
+      status, headers, body = @api_object.execute(
+        @plus_api.people.list_by_circle,
         params
       )
       JSON.parse(body[0])
@@ -262,5 +434,14 @@ class Providers::GoogleOauth2 < Providers::Default
     end
 
     auth_info
+  end
+
+  def check_required_params(params, required_params)
+    unless (missing_params = required_params - params.keys).empty?
+      puts "Missing required params - #{missing_params.join(',')}"
+      return false
+    else
+      return true
+    end
   end
 end
