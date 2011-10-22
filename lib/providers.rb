@@ -4,8 +4,8 @@ module Providers
 
     attr_accessor :credential
 
-    def initialize(credential)
-      @credential = credential
+    def initialize(cred)
+      @credential ||= cred
     end
 
     # Stub out hash for profile info.

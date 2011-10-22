@@ -1,55 +1,47 @@
 class Providers::GoogleOauth2 < Providers::Default
-  def initialize(credential)
+  def initialize(cred)
+    @credential = cred
     init_api_object
     discover_api
+    update_token
     super
   end
 
   # Update profile info.
   def profile_info
-    if update_token
-      status, headers, body = execute_with_api(
-        MAX_RETRIES,
-        @plus_api.people.get,
-        'userId' => 'me'
-      )
-      profile = JSON.parse(body[0])
+    profile = self.get_person
 
-      attrs = { :profile_api_data => profile }
-      attrs.merge!({ 
-        :name => profile['displayName']
-      }) if profile['displayName']
+    attrs = { :profile_api_data => profile }
+    attrs.merge!({ 
+      :name => profile['displayName']
+    }) if profile['displayName']
 
-      attrs.merge!({ 
-        :description => profile['tagline']
-      }) if profile['tagline']
+    attrs.merge!({ 
+      :description => profile['tagline']
+    }) if profile['tagline']
 
-      attrs.merge!({ 
-        :image => profile['image']['url']
-      }) if profile['image'] && profile['image']['url']
+    attrs.merge!({ 
+      :image => profile['image']['url']
+    }) if profile['image'] && profile['image']['url']
 
-      attrs
-    end
+    attrs
   end
 
   # List all activities
   # https://code.google.com/+/partners/pages/api/activities/list.html
   def list_activities(params = {})
-    if update_token
-      default_params = {
-        'collection' => 'all',
-        'userId' => 'me'
-      }
+    default_params = {
+      'collection' => 'all',
+      'userId' => 'me'
+    }
 
-      params = default_params.merge(params)
-      
-      status, headers, body = execute_with_api(
-        MAX_RETRIES,
-        @plus_api.activities.list,
-        params
-      )
-      JSON.parse(body[0])
-    end
+    params = default_params.merge(params)
+    
+    execute_with_api(
+      MAX_RETRIES,
+      @plus_api.activities.list,
+      params
+    )
   end
 
   # Get an activity
@@ -57,35 +49,29 @@ class Providers::GoogleOauth2 < Providers::Default
   def get_activity(params = {})
     return false unless check_required_params(params, ['activityId'])
 
-    if update_token
-      status, headers, body = execute_with_api(
-        MAX_RETRIES,
-        @plus_api.activities.get,
-        params
-      )
-      JSON.parse(body[0])
-    end
+    execute_with_api(
+      MAX_RETRIES,
+      @plus_api.activities.get,
+      params
+    )
   end
 
   # Insert an activity
   # https://code.google.com/+/partners/pages/api/activities/insert.html
   def insert_activity(params = {}, request_body = {})
-    if update_token
-      default_params = {
-        'userId' => 'me'
-      }
+    default_params = {
+      'userId' => 'me'
+    }
 
-      params = default_params.merge(params)
+    params = default_params.merge(params)
 
-      status, headers, body = execute_with_api(
-        MAX_RETRIES,
-        @plus_api.activities.insert,
-        params,
-        request_body.to_json,
-        {'Content-Type' => 'application/json'}
-      )
-      JSON.parse(body[0])
-    end
+    execute_with_api(
+      MAX_RETRIES,
+      @plus_api.activities.insert,
+      params,
+      request_body.to_json,
+      {'Content-Type' => 'application/json'}
+    )
   end
 
   # Update an activity
@@ -93,16 +79,13 @@ class Providers::GoogleOauth2 < Providers::Default
   def update_activity(params = {}, request_body = {})
     return false unless check_required_params(params, ['activityId'])
 
-    if update_token
-      status, headers, body = execute_with_api(
-        MAX_RETRIES,
-        @plus_api.activities.update,
-        params,
-        request_body.to_json,
-        {'Content-Type' => 'application/json'}
-      )
-      JSON.parse(body[0])
-    end
+    execute_with_api(
+      MAX_RETRIES,
+      @plus_api.activities.update,
+      params,
+      request_body.to_json,
+      {'Content-Type' => 'application/json'}
+    )
   end
 
   # List activities by circle
@@ -110,27 +93,21 @@ class Providers::GoogleOauth2 < Providers::Default
   def list_activities_by_circle(params = {})
     return false unless check_required_params(params, ['circleId'])
 
-    if update_token      
-      status, headers, body = execute_with_api(
-        MAX_RETRIES,
-        @plus_api.activities.list_by_circle,
-        params
-      )
-      JSON.parse(body[0])
-    end
+    execute_with_api(
+      MAX_RETRIES,
+      @plus_api.activities.list_by_circle,
+      params
+    )
   end
 
   # Search activities
   # https://code.google.com/+/partners/pages/api/activities/search.html
   def search_activities(params = {})
-    if update_token      
-      status, headers, body = execute_with_api(
-        MAX_RETRIES,
-        @plus_api.activities.search,
-        params
-      )
-      JSON.parse(body[0])
-    end
+    execute_with_api(
+      MAX_RETRIES,
+      @plus_api.activities.search,
+      params
+    )
   end
 
   # Remove activity
@@ -138,33 +115,27 @@ class Providers::GoogleOauth2 < Providers::Default
   def remove_activity(params = {})
     return false unless check_required_params(params, ['activityId'])
 
-    if update_token      
-      status, headers, body = execute_with_api(
-        MAX_RETRIES,
-        @plus_api.activities.remove,
-        params
-      )
-      JSON.parse(body[0])
-    end
+    execute_with_api(
+      MAX_RETRIES,
+      @plus_api.activities.remove,
+      params
+    )
   end
   
   # List all circles.
   # https://code.google.com/+/partners/pages/api/circles/list.html
   def list_circles(params = {})
-    if update_token
-      default_params = {
-        'userId' => 'me'
-      }
+    default_params = {
+      'userId' => 'me'
+    }
 
-      params = default_params.merge(params)
-      
-      status, headers, body = execute_with_api(
-        MAX_RETRIES,
-        @plus_api.circles.list,
-        params
-      )
-      JSON.parse(body[0])
-    end
+    params = default_params.merge(params)
+    
+    execute_with_api(
+      MAX_RETRIES,
+      @plus_api.circles.list,
+      params
+    )
   end
   
   # Get circle.
@@ -172,35 +143,29 @@ class Providers::GoogleOauth2 < Providers::Default
   def get_circle(params = {})
     return false unless check_required_params(params, ['circleId'])
 
-    if update_token
-      status, headers, body = execute_with_api(
-        MAX_RETRIES,
-        @plus_api.circles.get,
-        params
-      )
-      JSON.parse(body[0])
-    end
+    execute_with_api(
+      MAX_RETRIES,
+      @plus_api.circles.get,
+      params
+    )
   end
   
   # Insert circle.
   # https://code.google.com/+/partners/pages/api/circles/insert.html
   def insert_circle(params = {}, request_body = {})
-    if update_token
-      default_params = {
-        'userId' => 'me'
-      }
+    default_params = {
+      'userId' => 'me'
+    }
 
-      params = default_params.merge(params)
-      
-      status, headers, body = execute_with_api(
-        MAX_RETRIES,
-        @plus_api.circles.insert,
-        params,
-        request_body.to_json,
-        {'Content-Type' => 'application/json'}
-      )
-      JSON.parse(body[0])
-    end
+    params = default_params.merge(params)
+    
+    execute_with_api(
+      MAX_RETRIES,
+      @plus_api.circles.insert,
+      params,
+      request_body.to_json,
+      {'Content-Type' => 'application/json'}
+    )
   end
   
   # Update circle.
@@ -208,16 +173,13 @@ class Providers::GoogleOauth2 < Providers::Default
   def update_circle(params = {}, request_body = {})
     return false unless check_required_params(params, ['circleId'])
 
-    if update_token
-      status, headers, body = execute_with_api(
-        MAX_RETRIES,
-        @plus_api.circles.update,
-        params,
-        request_body.to_json,
-        {'Content-Type' => 'application/json'}
-      )
-      JSON.parse(body[0])
-    end
+    execute_with_api(
+      MAX_RETRIES,
+      @plus_api.circles.update,
+      params,
+      request_body.to_json,
+      {'Content-Type' => 'application/json'}
+    )
   end
   
   # Remove circle.
@@ -225,14 +187,11 @@ class Providers::GoogleOauth2 < Providers::Default
   def remove_circle(params = {})
     return false unless check_required_params(params, ['circleId'])
 
-    if update_token
-      status, headers, body = execute_with_api(
-        MAX_RETRIES,
-        @plus_api.circles.remove,
-        params
-      )
-      JSON.parse(body[0])
-    end
+    execute_with_api(
+      MAX_RETRIES,
+      @plus_api.circles.remove,
+      params
+    )
   end
 
   # List comments on activity
@@ -240,14 +199,11 @@ class Providers::GoogleOauth2 < Providers::Default
   def list_comments(params = {})
     return false unless check_required_params(params, ['activityId'])
 
-    if update_token
-      status, headers, body = execute_with_api(
-        MAX_RETRIES,
-        @plus_api.comments.list,
-        params
-      )
-      JSON.parse(body[0])
-    end
+    execute_with_api(
+      MAX_RETRIES,
+      @plus_api.comments.list,
+      params
+    )
   end
 
   # Get a comment
@@ -255,14 +211,11 @@ class Providers::GoogleOauth2 < Providers::Default
   def get_comment(params = {})
     return false unless check_required_params(params, ['commentId'])
 
-    if update_token
-      status, headers, body = execute_with_api(
-        MAX_RETRIES,
-        @plus_api.comments.get,
-        params
-      )
-      JSON.parse(body[0])
-    end
+    execute_with_api(
+      MAX_RETRIES,
+      @plus_api.comments.get,
+      params
+    )
   end
 
   # Insert comment
@@ -270,16 +223,13 @@ class Providers::GoogleOauth2 < Providers::Default
   def insert_comment(params = {}, request_body = {})
     return false unless check_required_params(params, ['activityId'])
 
-    if update_token
-      status, headers, body = execute_with_api(
-        MAX_RETRIES,
-        @plus_api.comments.insert,
-        params,
-        request_body.to_json,
-        {'Content-Type' => 'application/json'}
-      )
-      JSON.parse(body[0])
-    end
+    execute_with_api(
+      MAX_RETRIES,
+      @plus_api.comments.insert,
+      params,
+      request_body.to_json,
+      {'Content-Type' => 'application/json'}
+    )
   end
 
   # Update comment
@@ -287,16 +237,13 @@ class Providers::GoogleOauth2 < Providers::Default
   def update_comment(params = {}, request_body = {})
     return false unless check_required_params(params, ['commentId'])
 
-    if update_token
-      status, headers, body = execute_with_api(
-        MAX_RETRIES,
-        @plus_api.comments.update,
-        params,
-        request_body.to_json,
-        {'Content-Type' => 'application/json'}
-      )
-      JSON.parse(body[0])
-    end
+    execute_with_api(
+      MAX_RETRIES,
+      @plus_api.comments.update,
+      params,
+      request_body.to_json,
+      {'Content-Type' => 'application/json'}
+    )
   end
 
   # Remove a comment
@@ -304,14 +251,11 @@ class Providers::GoogleOauth2 < Providers::Default
   def remove_comment(params = {})
     return false unless check_required_params(params, ['commentId'])
 
-    if update_token
-      status, headers, body = execute_with_api(
-        MAX_RETRIES,
-        @plus_api.comments.remove,
-        params
-      )
-      JSON.parse(body[0])
-    end
+    execute_with_api(
+      MAX_RETRIES,
+      @plus_api.comments.remove,
+      params
+    )
   end
 
   # List people
@@ -319,42 +263,37 @@ class Providers::GoogleOauth2 < Providers::Default
   def list_people(params = {})
     return false unless check_required_params(params, ['userId', 'collection'])
 
-    if update_token
-      status, headers, body = execute_with_api(
-        MAX_RETRIES,
-        @plus_api.people.list,
-        params
-      )
-      JSON.parse(body[0])
-    end
+    execute_with_api(
+      MAX_RETRIES,
+      @plus_api.people.list,
+      params
+    )
   end
 
   # Get person
   # https://code.google.com/+/partners/pages/api/people/get.html
   def get_person(params = {})
-    return false unless check_required_params(params, ['userId'])
+    default_params = {
+      'userId' => 'me'
+    }
 
-    if update_token
-      status, headers, body = execute_with_api(
-        MAX_RETRIES,
-        @plus_api.people.get,
-        params
-      )
-      JSON.parse(body[0])
-    end
+    params = default_params.merge(params)
+
+    execute_with_api(
+      MAX_RETRIES,
+      @plus_api.people.get,
+      params
+    )
   end
 
   # Search people
   # https://code.google.com/+/partners/pages/api/people/search.html
   def search_people(params = {})
-    if update_token
-      status, headers, body = execute_with_api(
-        MAX_RETRIES,
-        @plus_api.people.search,
-        params
-      )
-      JSON.parse(body[0])
-    end
+    execute_with_api(
+      MAX_RETRIES,
+      @plus_api.people.search,
+      params
+    )
   end
 
   # Add to circle
@@ -362,14 +301,11 @@ class Providers::GoogleOauth2 < Providers::Default
   def add_person_to_circle(params = {})
     return false unless check_required_params(params, ['circleId', 'userId'])
 
-    if update_token
-      status, headers, body = execute_with_api(
-        MAX_RETRIES,
-        @plus_api.people.add_to_circle,
-        params
-      )
-      JSON.parse(body[0])
-    end
+    execute_with_api(
+      MAX_RETRIES,
+      @plus_api.people.add_to_circle,
+      params
+    )
   end
 
   # Remove from circle
@@ -377,14 +313,11 @@ class Providers::GoogleOauth2 < Providers::Default
   def remove_person_from_circle(params = {})
     return false unless check_required_params(params, ['circleId', 'userId'])
 
-    if update_token
-      status, headers, body = execute_with_api(
-        MAX_RETRIES,
-        @plus_api.people.remove_from_circle,
-        params
-      )
-      JSON.parse(body[0])
-    end
+    execute_with_api(
+      MAX_RETRIES,
+      @plus_api.people.remove_from_circle,
+      params
+    )
   end
 
   # List people by activity
@@ -392,14 +325,11 @@ class Providers::GoogleOauth2 < Providers::Default
   def list_people_by_activity(params = {})
     return false unless check_required_params(params, ['activityId', 'collection'])
 
-    if update_token
-      status, headers, body = execute_with_api(
-        MAX_RETRIES,
-        @plus_api.people.list_by_activity,
-        params
-      )
-      JSON.parse(body[0])
-    end
+    execute_with_api(
+      MAX_RETRIES,
+      @plus_api.people.list_by_activity,
+      params
+    )
   end
 
   # List people by circle
@@ -407,14 +337,11 @@ class Providers::GoogleOauth2 < Providers::Default
   def list_people_by_circle(params = {})
     return false unless check_required_params(params, ['circleId'])
 
-    if update_token
-      status, headers, body = execute_with_api(
-        MAX_RETRIES,
-        @plus_api.people.list_by_circle,
-        params
-      )
-      JSON.parse(body[0])
-    end
+    execute_with_api(
+      MAX_RETRIES,
+      @plus_api.people.list_by_circle,
+      params
+    )
   end
 
   def self.provider_name
@@ -481,7 +408,7 @@ class Providers::GoogleOauth2 < Providers::Default
       raise ::Providers::ApiError, "An API error has occurred."
     end
 
-    return status, headers, body
+    JSON.parse(body[0])
   end
 
   def refresh_tokens

@@ -38,7 +38,7 @@ class Credential < ActiveRecord::Base
     provider_class.provider_name
   end
 
-    # Update profile info from API
+  # Update profile info from API
   def update_profile_info
     self.attributes = provider_class.new(self).profile_info
   end
