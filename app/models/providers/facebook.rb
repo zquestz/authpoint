@@ -1,7 +1,11 @@
 class Providers::Facebook < Providers::Default
-  def profile_info
-    @api_object = Koala::Facebook::API.new(credential.token)
+  def initialize(cred)
+    @credential = cred
+    init_api_object
+    super
+  end
 
+  def profile_info
     profile = @api_object.get_object("me")
 
     attrs = { :profile_api_data => profile }
@@ -14,7 +18,17 @@ class Providers::Facebook < Providers::Default
     {}
   end
 
+  def post_content(post)
+    @api_object.put_object("me", "feed", :message => post.message)
+  end
+
   def provider_name
     'Facebook'
+  end
+
+  private
+
+  def init_api_object
+    @api_object = Koala::Facebook::API.new(credential.token)
   end
 end
