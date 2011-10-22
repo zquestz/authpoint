@@ -1,5 +1,5 @@
 class Providers::Facebook < Providers::Default
-  def profile_info(credential)
+  def profile_info
     @api_object = Koala::Facebook::API.new(credential.token)
 
     profile = @api_object.get_object("me")

@@ -7,9 +7,6 @@ class Credential < ActiveRecord::Base
 
   # Belongs to a User.
   belongs_to :user
-
-  # Update profile information before saving
-  before_save :update_profile_info
   
   # Is it a facebook credential?
   def facebook?
@@ -41,12 +38,12 @@ class Credential < ActiveRecord::Base
     provider_class.provider_name
   end
 
-  protected
-
-  # Update profile info from API
+    # Update profile info from API
   def update_profile_info
-    self.attributes = provider_class.new.profile_info(self)
+    self.attributes = provider_class.new(self).profile_info
   end
+
+  protected
 
   # Class that provides API interaction
   def provider_class
