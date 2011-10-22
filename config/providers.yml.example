@@ -8,7 +8,7 @@
     facebook:
       key: KEY
       secret: SECRET
-      scope:
+      scope: 'publish_stream, offline_access'
     twitter:
       key: KEY
       secret: SECRET
