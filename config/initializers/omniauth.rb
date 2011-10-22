@@ -12,6 +12,11 @@ require 'httpadapter/adapters/net_http'
 # YAML data is returned by the settings method.
 pinfo = ProviderInfo.new.settings
 
+Twitter.configure do |config|
+  config.consumer_key = pinfo['twitter']['key']
+  config.consumer_secret = pinfo['twitter']['secret']
+end
+
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :google_oauth2, pinfo['google']['key'], pinfo['google']['secret'], {
     :scope => pinfo['google']['scope']

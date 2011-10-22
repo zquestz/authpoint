@@ -10,9 +10,10 @@ gem 'formtastic'
 gem 'acts-as-taggable-on'
 gem 'will_paginate'
 
-# Gems for interacting with the facebook and google API's
+# Gems for interacting with the facebook, google, and twitter API's
 gem 'koala'
 gem 'google-api-client'
+gem 'twitter'
 
 # Gems used only for assets and not required
 # in production environments by default.
