@@ -14,7 +14,7 @@ class Providers::Facebook < Providers::Default
     {}
   end
 
-  def self.provider_name
+  def provider_name
     'Facebook'
   end
 end

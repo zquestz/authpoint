@@ -14,7 +14,14 @@ module Providers
       {}
     end
 
-    def self.provider_name
+    # Post content to the provider
+    # Should be overloaded in other provider classes
+    def post_content(post)
+      nil
+    end
+
+    # Friendly name for the provider.
+    def provider_name
       'Default'
     end
   end

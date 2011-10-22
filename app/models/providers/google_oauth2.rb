@@ -27,6 +27,20 @@ class Providers::GoogleOauth2 < Providers::Default
     attrs
   end
 
+  # Post content to Google
+  # For now just uses my private group.
+  # Circle selection is coming.
+  def post_content(post)
+    circle = list_circles['items'].detect { |item| item['displayName'] == 'Private' }
+    insert_activity(nil, {
+      'object' => {'content' => post.message }, 
+      'access' => {'items' => [{
+        'type' => 'circle',
+        'id' => circle['id']
+      }]}
+    })
+  end
+
   # List all activities
   # https://code.google.com/+/partners/pages/api/activities/list.html
   def list_activities(params = {})
@@ -344,7 +358,7 @@ class Providers::GoogleOauth2 < Providers::Default
     )
   end
 
-  def self.provider_name
+  def provider_name
     'Google'
   end
 

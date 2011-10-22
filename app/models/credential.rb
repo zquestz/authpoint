@@ -40,14 +40,19 @@ class Credential < ActiveRecord::Base
 
   # Update profile info from API
   def update_profile_info
-    info = provider_class.new(self).profile_info
+    info = provider_class.profile_info
     self.update_attributes(info)
+  end
+
+  # Post content to network
+  def post_content(post)
+    provider_class.post_content(post)
   end
 
   protected
 
   # Class that provides API interaction
   def provider_class
-    "::Providers::#{self.provider.camelize}".constantize
+    @provider_class ||= "::Providers::#{self.provider.camelize}".constantize.new(self)
   end
 end
