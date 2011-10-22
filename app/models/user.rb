@@ -26,6 +26,10 @@ class User < ActiveRecord::Base
     user = current_user || credential.user || User.new(:name => (credential.nickname.presence || credential.uid))
     credential.user = user
     user.credentials << credential
-    user.save ? user : false
+    # Save user with only OmniAuth data.
+    user_saved = user.save ? user : false
+    # Retrieve data from Providers::
+    credential.update_profile_info if user_saved
+    user_saved
   end
 end
