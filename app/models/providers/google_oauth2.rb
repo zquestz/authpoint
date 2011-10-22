@@ -35,7 +35,7 @@ class Providers::GoogleOauth2 < Providers::Default
       'userId' => 'me'
     }
 
-    params = default_params.merge(params)
+    params = default_params.merge(params || {})
     
     execute_with_api(
       MAX_RETRIES,
@@ -63,7 +63,7 @@ class Providers::GoogleOauth2 < Providers::Default
       'userId' => 'me'
     }
 
-    params = default_params.merge(params)
+    params = default_params.merge(params || {})
 
     execute_with_api(
       MAX_RETRIES,
@@ -129,7 +129,7 @@ class Providers::GoogleOauth2 < Providers::Default
       'userId' => 'me'
     }
 
-    params = default_params.merge(params)
+    params = default_params.merge(params || {})
     
     execute_with_api(
       MAX_RETRIES,
@@ -157,7 +157,7 @@ class Providers::GoogleOauth2 < Providers::Default
       'userId' => 'me'
     }
 
-    params = default_params.merge(params)
+    params = default_params.merge(params || {})
     
     execute_with_api(
       MAX_RETRIES,
@@ -277,7 +277,7 @@ class Providers::GoogleOauth2 < Providers::Default
       'userId' => 'me'
     }
 
-    params = default_params.merge(params)
+    params = default_params.merge(params || {})
 
     execute_with_api(
       MAX_RETRIES,
