@@ -1,4 +1,7 @@
 class Post < ActiveRecord::Base
+  # Set default order to newest first.
+  default_scope :order => 'id DESC'
+
   # Add tagging support
   acts_as_taggable
   
