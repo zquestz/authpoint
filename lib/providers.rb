@@ -10,7 +10,7 @@ module Providers
 
     # Stub out hash for profile info.
     # Should be overloaded in other provider classes
-    def profile_info(credential)
+    def profile_info
       {}
     end
 
