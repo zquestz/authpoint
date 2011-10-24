@@ -27,9 +27,9 @@ class Post < ActiveRecord::Base
 
   def post_to_credentials
     self.user.credentials.each do |c|
-      #if credential_ids.include?(c.id)
+      if credential_ids.include?(c.id)
         c.post_content(self)
-      #end
+      end
     end
   end
 end

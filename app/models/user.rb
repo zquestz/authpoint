@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
     # Save user with only OmniAuth data.
     user_saved = user.save ? user : false
     # Retrieve data from Providers::
-    # credential.update_profile_info if user_saved
+    credential.update_profile_info if user_saved
     user_saved
   end
 end

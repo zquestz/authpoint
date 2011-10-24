@@ -2,6 +2,7 @@ class Providers::Twitter < Providers::Default
   def initialize(cred)
     @credential = cred
     init_api_object
+    super
   end
 
   def post_content(post)
