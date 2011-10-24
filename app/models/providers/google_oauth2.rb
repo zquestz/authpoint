@@ -30,7 +30,7 @@ class Providers::GoogleOauth2 < Providers::Default
   # Post content to Google
   # For now just uses my private group.
   # Circle selection is coming.
-  def post_content(post)
+  def post_content(post, options = {})
     circle = list_circles['items'].detect { |item| item['displayName'] == 'Private' }
     insert_activity(nil, {
       'object' => {'content' => post.message }, 

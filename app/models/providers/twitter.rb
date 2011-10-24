@@ -5,7 +5,7 @@ class Providers::Twitter < Providers::Default
     super
   end
 
-  def post_content(post)
+  def post_content(post, options = {})
     @api_object.update(post.message)
   end
 

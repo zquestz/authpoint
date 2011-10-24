@@ -18,7 +18,7 @@ class Providers::Facebook < Providers::Default
     {}
   end
 
-  def post_content(post)
+  def post_content(post, options = {})
     @api_object.put_object("me", "feed", :message => post.message)
   end
 

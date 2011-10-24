@@ -16,7 +16,7 @@ module Providers
 
     # Post content to the provider
     # Should be overloaded in other provider classes
-    def post_content(post)
+    def post_content(post, options = {})
       nil
     end
 

@@ -45,7 +45,7 @@ class Credential < ActiveRecord::Base
   end
 
   # Post content to network
-  def post_content(post)
+  def post_content(post, options = {})
     provider_class.post_content(post)
   end
 
