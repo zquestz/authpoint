@@ -411,7 +411,7 @@ class Providers::GoogleOauth2 < Providers::Default
     end
   end
 
-  def execute_with_api(retries, *args)
+  def execute_with_api(retries = MAX_RETRIES, *args)
     status, headers, body = @api_object.execute(*args)
     if status == 401 && retries >= 0
       refresh_tokens
