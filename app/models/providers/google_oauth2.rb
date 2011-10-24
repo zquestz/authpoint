@@ -445,19 +445,24 @@ class Providers::GoogleOauth2 < Providers::Default
 
     retries = options[:retries] || MAX_RETRIES
     status, headers, body = @api_object.execute(*options[:args])
-    if status == 401 && retries >= 0
+
+    parsed_body = JSON.parse(body[0])
+
+    unauthorized = status_unauthorized?(status, parsed_body)
+
+    if unauthorized && retries >= 0
       refresh_tokens
       execute_with_api({
         :retries => retries - 1,
         :args => options[:args]
       })
-    elsif status == 401
+    elsif unauthorized
       raise ::Providers::MaxRetriesExceeded, "Too many retries."
     elsif status != 200
       raise ::Providers::ApiError, "An API error has occurred."
     end
 
-    JSON.parse(body[0])
+    parsed_body
   end
 
   def refresh_tokens
@@ -479,5 +484,9 @@ class Providers::GoogleOauth2 < Providers::Default
       'expires_at' => parsed_data['expires_in'],
       'issued_at' => parsed_data['issued_at'] || credential.issued_at
     }))
+  end
+
+  def status_unauthorized?(status, body)
+    status == 401 || (body['error'] && body['error']['code'] == 401)
   end
 end
