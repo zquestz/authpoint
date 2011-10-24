@@ -199,7 +199,7 @@
            "properties": {
             "label": {
              "type": "string",
-             "description": "Human readable label, e.g \"album cover."
+             "description": "The category label, suitable for display (e.g. \"album cover\")."
             },
             "schema": {
              "type": "string",
@@ -1585,6 +1585,64 @@
       "https://www.googleapis.com/auth/plus.me"
      ]
     },
+    "list": {
+     "id": "plusPages.people.list",
+     "path": "people/{userId}/people/{collection}",
+     "httpMethod": "GET",
+     "description": "List all of the people in the specified collection.",
+     "parameters": {
+      "collection": {
+       "type": "string",
+       "description": "The collection of people to list.",
+       "required": true,
+       "enum": [
+        "followers"
+       ],
+       "enumDescriptions": [
+        "The list of users who have the given user in their circles."
+       ],
+       "location": "path"
+      },
+      "everything": {
+       "type": "boolean",
+       "description": "If set to \"true\", return the complete profiles for people in the response.",
+       "location": "query"
+      },
+      "hasApp": {
+       "type": "boolean",
+       "description": "If set to \"true\" or \"false\", return only results that have a matching hasApp value. In addition: \n- A value of \"true\" indicates that the person has installed the app that is making this request, and has chosen to expose this install state to the caller. \n- A value of \"false\" indicates that the install state cannot be determined (it is either not installed or the person has chosen to keep this information private). \n- If not specified, no filtering will occur. This parameter is applicable only to the \"recommended\" collection of people.",
+       "location": "query"
+      },
+      "maxResults": {
+       "type": "integer",
+       "description": "The maximum number of people to include in the response, used for paging. For any response, the actual number returned may be less than the specified maxResults.",
+       "default": "100",
+       "format": "uint32",
+       "minimum": "1",
+       "maximum": "100",
+       "location": "query"
+      },
+      "pageToken": {
+       "type": "string",
+       "description": "The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of \"nextPageToken\" from the previous response.",
+       "location": "query"
+      },
+      "userId": {
+       "type": "string",
+       "description": "The ID of the person to get the collection of people for. Its value should be \"me\", to indicate the authenticated user.",
+       "required": true,
+       "pattern": "me|[0-9]+",
+       "location": "path"
+      }
+     },
+     "parameterOrder": [
+      "userId",
+      "collection"
+     ],
+     "response": {
+      "$ref": "PeopleFeed"
+     }
+    },
     "listByActivity": {
      "id": "plusPages.people.listByActivity",
      "path": "activities/{activityId}/people/{collection}",
@@ -1708,7 +1766,7 @@
      "parameters": {
       "maxResults": {
        "type": "integer",
-       "description": "The maximum number of activities to include in the response, used for paging. For any response, the actual number returned may be less than the specified maxResults.",
+       "description": "The maximum number of people to include in the response, used for paging. For any response, the actual number returned may be less than the specified maxResults.",
        "default": "10",
        "format": "uint32",
        "minimum": "1",
