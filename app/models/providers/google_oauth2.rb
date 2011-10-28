@@ -12,15 +12,15 @@ class Providers::GoogleOauth2 < Providers::Default
     profile = self.get_person
 
     attrs = { :profile_api_data => profile }
-    attrs.merge!({ 
+    attrs.merge!({
       :name => profile['displayName']
     }) if profile['displayName']
 
-    attrs.merge!({ 
+    attrs.merge!({
       :description => profile['tagline']
     }) if profile['tagline']
 
-    attrs.merge!({ 
+    attrs.merge!({
       :image => profile['image']['url']
     }) if profile['image'] && profile['image']['url']
 
@@ -33,7 +33,7 @@ class Providers::GoogleOauth2 < Providers::Default
   def post_content(post, options = {})
     circle = list_circles['items'].detect { |item| item['displayName'] == 'Private' }
     insert_activity(nil, {
-      'object' => {'content' => post.message }, 
+      'object' => {'content' => post.message },
       'access' => {'items' => [{
         'type' => 'circle',
         'id' => circle['id']
@@ -50,10 +50,10 @@ class Providers::GoogleOauth2 < Providers::Default
     }
 
     params = default_params.recursive_merge(params || {})
-    
+
     execute_with_api({
       :args => [
-        @plus_api.activities.list, 
+        @plus_api.activities.list,
         params
       ]
     })
@@ -66,7 +66,7 @@ class Providers::GoogleOauth2 < Providers::Default
 
     execute_with_api({
       :args => [
-        @plus_api.activities.get, 
+        @plus_api.activities.get,
         params
       ]
     })
@@ -83,9 +83,9 @@ class Providers::GoogleOauth2 < Providers::Default
 
     execute_with_api({
       :args => [
-        @plus_api.activities.insert, 
-        params, 
-        request_body.to_json, 
+        @plus_api.activities.insert,
+        params,
+        request_body.to_json,
         {'Content-Type' => 'application/json'}
       ]
     })
@@ -142,7 +142,7 @@ class Providers::GoogleOauth2 < Providers::Default
       ]
     })
   end
-  
+
   # List all circles.
   # https://code.google.com/+/partners/pages/api/circles/list.html
   def list_circles(params = {})
@@ -151,7 +151,7 @@ class Providers::GoogleOauth2 < Providers::Default
     }
 
     params = default_params.recursive_merge(params || {})
-    
+
     execute_with_api({
       :args => [
         @plus_api.circles.list,
@@ -159,7 +159,7 @@ class Providers::GoogleOauth2 < Providers::Default
       ]
     })
   end
-  
+
   # Get circle.
   # https://code.google.com/+/partners/pages/api/circles/get.html
   def get_circle(params = {})
@@ -172,7 +172,7 @@ class Providers::GoogleOauth2 < Providers::Default
       ]
     })
   end
-  
+
   # Insert circle.
   # https://code.google.com/+/partners/pages/api/circles/insert.html
   def insert_circle(params = {}, request_body = {})
@@ -181,7 +181,7 @@ class Providers::GoogleOauth2 < Providers::Default
     }
 
     params = default_params.recursive_merge(params || {})
-    
+
     execute_with_api({
       :args => [
         @plus_api.circles.insert,
@@ -191,7 +191,7 @@ class Providers::GoogleOauth2 < Providers::Default
       ]
     })
   end
-  
+
   # Update circle.
   # https://code.google.com/+/partners/pages/api/circles/update.html
   def update_circle(params = {}, request_body = {})
@@ -206,7 +206,7 @@ class Providers::GoogleOauth2 < Providers::Default
       ]
     })
   end
-  
+
   # Remove circle.
   # https://code.google.com/+/partners/pages/api/circles/remove.html
   def remove_circle(params = {})
@@ -452,7 +452,7 @@ class Providers::GoogleOauth2 < Providers::Default
 
     if unauthorized && retries >= 0
       refresh_tokens
-      execute_with_api({
+      return execute_with_api({
         :retries => retries - 1,
         :args => options[:args]
       })
