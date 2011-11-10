@@ -446,7 +446,7 @@ class Providers::GoogleOauth2 < Providers::Default
     retries = options[:retries] || MAX_RETRIES
     status, headers, body = @api_object.execute(*options[:args])
 
-    parsed_body = JSON.parse(body[0])
+    parsed_body = JSON.parse(body[0]) rescue ''
 
     unauthorized = status_unauthorized?(status, parsed_body)
 
@@ -458,7 +458,7 @@ class Providers::GoogleOauth2 < Providers::Default
       })
     elsif unauthorized
       raise ::Providers::MaxRetriesExceeded, "Too many retries."
-    elsif status != 200
+    elsif !(status.to_s =~ /^20\d/)
       raise ::Providers::ApiError, "An API error has occurred."
     end
 
