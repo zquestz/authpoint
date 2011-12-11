@@ -8,6 +8,11 @@ require 'providers'
 require 'google/api_client'
 require 'httpadapter/adapters/net_http'
 
+# Bring in strategies
+require 'omniauth-google-oauth2'
+require 'omniauth-facebook'
+require 'omniauth-twitter'
+
 # Instantiate ProviderInfo class.
 # YAML data is returned by the settings method.
 pinfo = ProviderInfo.new.settings
@@ -28,9 +33,5 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   
   provider :twitter, pinfo['twitter']['key'], pinfo['twitter']['secret'], {
     :scope => pinfo['twitter']['scope']
-  }
-  
-  provider :tumblr, pinfo['tumblr']['key'], pinfo['tumblr']['secret'], {
-    :scope => pinfo['tumblr']['scope']
   }
 end

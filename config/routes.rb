@@ -2,9 +2,6 @@ Authpoint::Application.routes.draw do
   # Homepage
   root :to => 'posts#index', :via => :get
 
-  # For posts
-  resources :posts, :path => ''
-
   # For user management
   resources :users, :only => [:show, :edit, :update, :destroy]
   
@@ -15,9 +12,11 @@ Authpoint::Application.routes.draw do
   get 'auth/google_oauth2/callback', :to => 'oauth_callbacks#google'
   get 'auth/facebook/callback', :to => 'oauth_callbacks#facebook'
   get 'auth/twitter/callback', :to => 'oauth_callbacks#twitter'
-  get 'auth/tumblr/callback', :to => 'oauth_callbacks#tumblr'
   get 'auth/failure', :to => 'oauth_callbacks#failure'
   get 'logout', :to => 'oauth_callbacks#logout', :as => :logout
+  
+  # For posts
+  resources :posts, :path => ''
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

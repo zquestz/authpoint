@@ -8,12 +8,8 @@
     facebook:
       key: KEY
       secret: SECRET
-      scope: 'publish_stream, offline_access'
+      scope: 'user_about_me,email,publish_stream,offline_access'
     twitter:
-      key: KEY
-      secret: SECRET
-      scope:
-    tumblr:
       key: KEY
       secret: SECRET
       scope:

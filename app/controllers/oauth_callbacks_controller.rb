@@ -9,7 +9,6 @@ class OauthCallbacksController < ApplicationController
   end
   alias :google :facebook
   alias :twitter :facebook
-  alias :tumblr :facebook
 
   # Failure route
   def failure

@@ -22,11 +22,6 @@ class Credential < ActiveRecord::Base
   def twitter?
     self.provider == 'twitter'
   end
-  
-  # Is it a tumblr credential?
-  def tumblr?
-    self.provider == 'tumblr'
-  end
 
   # Slug the url.
   def to_param

@@ -39,10 +39,6 @@ describe Credential do
       it 'should not be a twitter credential' do
         @cred.twitter?.should be_false
       end
-      
-      it 'should not be a tumblr credential' do
-        @cred.tumblr?.should be_false
-      end
     end
   
     context 'facebook' do
@@ -62,10 +58,6 @@ describe Credential do
       it 'should not be a twitter credential' do
         @cred.twitter?.should be_false
       end
-      
-      it 'should not be a tumblr credential' do
-        @cred.tumblr?.should be_false
-      end
     end
   
     context 'twitter' do
@@ -84,33 +76,6 @@ describe Credential do
     
       it 'should be a twitter credential' do
         @cred.twitter?.should be_true
-      end
-      
-      it 'should not be a tumblr credential' do
-        @cred.tumblr?.should be_false
-      end
-    end
-    
-    context 'tumblr' do
-      before do
-        user = Factory(:user)
-        @cred = Credential.new(:user => user, :provider => 'tumblr')
-      end
-    
-      it 'should not be a google credential' do
-        @cred.google?.should be_false
-      end
-    
-      it 'should not be a facebook credential' do
-        @cred.facebook?.should be_false
-      end
-    
-      it 'should not be a twitter credential' do
-        @cred.twitter?.should be_false
-      end
-            
-      it 'should be a tumblr credential' do
-        @cred.tumblr?.should be_true
       end
     end
   end

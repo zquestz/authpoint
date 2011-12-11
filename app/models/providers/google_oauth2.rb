@@ -402,12 +402,7 @@ class Providers::GoogleOauth2 < Providers::Default
   end
 
   def discover_api
-    @api_object.register_discovery_document(
-      'plusPages', 'v1',
-      open("#{Rails.root}/config/api/plusPages-v1.json") { |f| f.read }
-    )
-
-    @plus_api = @api_object.discovered_api('plusPages', 'v1')
+    @plus_api = @api_object.discovered_api('plus', 'v1')
   end
 
   def update_token(token_info = credential)
