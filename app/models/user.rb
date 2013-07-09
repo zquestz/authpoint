@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
     attrs = data['info'] || {}
     attrs.merge!(data['credentials']) if data['credentials']
     attrs.merge!(data['extra']) if data['extra']
+    attrs.merge!('nickname' => data['user_info']['nickname']) if data['user_info'] && data['user_info']['nickname']
     attrs.delete_if { |k, v| !credential.attributes.keys.include?(k) }
     credential.attributes = attrs
     user = current_user || credential.user || User.new(:name => (credential.nickname.presence || credential.uid))

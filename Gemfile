@@ -38,5 +38,5 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'autotest'
   gem 'simplecov', '>= 0.4.0', :require => false
-  gem 'ruby-debug19', :require => 'ruby-debug'
+  # gem 'ruby-debug19', :require => 'ruby-debug'
 end
